@@ -1,0 +1,184 @@
+{
+  "redirects": [
+    {
+      "source": "/introduction/what-is-axiom",
+      "destination": "/docs/introduction/why-axiom",
+      "permanent": false
+    },
+    {
+      "source": "/introduction/quickstart",
+      "destination": "/docs/introduction/quickstart",
+      "permanent": false
+    },
+    {
+      "source": "/protocol-design/:path*",
+      "destination": "/protocol/protocol-design/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/zero-knowledge-proofs/:path*",
+      "destination": "/protocol/zero-knowledge-proofs/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/transparency-and-security/:path*",
+      "destination": "/docs/transparency-and-security/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started",
+      "destination": "/docs/introduction/quickstart",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started/setup",
+      "destination": "/docs/tutorial/setting-up",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started/writing-a-client-circuit",
+      "destination": "/docs/tutorial/client-circuit",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started/smart-contract-integration",
+      "destination": "/docs/axiom-developer-flow/smart-contract-integration",
+      "permanent": false
+    },
+    {
+      "source": "/transparency-and-security/contract-addresses",
+      "destination": "/docs/developer-resources/contract-addresses",
+      "permanent": false
+    },
+    {
+      "source": "/examples/axiom-cookbook",
+      "destination": "/docs/developer-resources/axiom-cookbook",
+      "permanent": false
+    },
+    {
+      "source": "/developers/developer-resources/finding-storage-slots",
+      "destination": "/docs/developer-resources/on-chain-data/finding-storage-slots",
+      "permanent": false
+    },
+    {
+      "source": "/protocol-design/ethereum-on-chain-data",
+      "destination": "/docs/developer-resources/on-chain-data/ethereum-on-chain-data",
+      "permanent": false
+    },
+    {
+      "source": "/developers/developer-resources/transaction-receipts-and-logs",
+      "destination": "/docs/developer-resources/on-chain-data/transaction-receipts-and-logs",
+      "permanent": false
+    },
+    {
+      "source": "/examples/autonomous-airdrop/",
+      "destination": "/docs/tutorial/setting-up",
+      "permanent": false
+    },
+    {
+      "source": "/examples/autonomous-airdrop/client-circuit",
+      "destination": "/docs/tutorial/client-circuit",
+      "permanent": false
+    },
+    {
+      "source": "/examples/autonomous-airdrop/client-contract",
+      "destination": "/docs/tutorial/client-contract",
+      "permanent": false
+    },
+    {
+      "source": "/examples/autonomous-airdrop/web-app",
+      "destination": "/docs/tutorial/web-app",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started/smart-contract-integration/foundry-tests",
+      "destination": "/docs/axiom-developer-flow/foundry-tests",
+      "permanent": false
+    },
+    {
+      "source": "/getting-started/smart-contract-integration/sending-queries-on-chain",
+      "destination": "/docs/axiom-developer-flow/deployment/",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-for-developers",
+      "destination": "/docs/axiom-developer-flow/app-architecture",
+      "permanent": false
+    },
+    {
+      "source": "/developers/handling-axiom-callbacks",
+      "destination": "/docs/axiom-developer-flow/smart-contract-integration",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk",
+      "destination": "/sdk/smart-contract-sdk/axiom-sc-client",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/axiomcircuit",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/client-circuit-reference",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/client-circuit-reference/circuit-types",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/circuit-types",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/client-circuit-reference/utility-functions",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/system-functions",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/client-circuit-reference/basic-functions",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/zk-primitives",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/client-circuit-reference/axiom-functions",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/axiom-subqueries",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-client-sdk/axiom-subqueries/:path*",
+      "destination": "/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-cli",
+      "destination": "/sdk/typescript-sdk/axiom-cli",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiom-react-client",
+      "destination": "/sdk/react-sdk/axiom-react",
+      "permanent": false
+    },
+    {
+      "source": "/developers/axiomrepl",
+      "destination": "/docs/developer-resources/axiomrepl",
+      "permanent": false
+    },
+    {
+      "source": "/developers/common-issues/callback-debugging",
+      "destination": "/docs/developer-resources/debugging-resources/callback-debugging",
+      "permanent": false
+    },
+    {
+      "source": "/developers/common-issues",
+      "destination": "/docs/developer-resources/debugging-resources/common-issues",
+      "permanent": false
+    }
+  ]
+}

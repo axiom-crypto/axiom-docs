@@ -1,0 +1,10 @@
+{
+    "position": 4,
+    "label": "Protocol Design",
+    "collapsible": true,
+    "collapsed": false,
+    "link": {
+      "type": "generated-index",
+      "title": "Axiom Protocol Design"
+    },
+  }

@@ -1,0 +1,34 @@
+---
+description: Functions whose results are validated by Axiom
+sidebar_position: 4
+sidebar_label: Axiom Subqueries
+---
+
+import DocCardList from "@theme/DocCardList";
+
+# Axiom Subqueries
+
+Axiom subqueries are not validated inside the client circuit. Instead, they are added as requests for Axiom to validate. These requests are added as Axiom subqueries to your overall Axiom query. When Axiom fulfills your query, your client circuit proof is combined with Axiom proofs to form a complete proof of validity of all computations you specified.
+
+All requests for historic on-chain data are Axiom subqueries and return a [`CircuitValue256`](../circuit-types#circuitvalue256). If an input value is of type `string`, `number`, or `bigint`, it will be treated as a constant (regardless of the input to your circuit, it will need to remain the same). If you pass in a [`CircuitValue`](../circuit-types#circuitvalue) or [`CircuitValue256`](../circuit-types#circuitvalue256) instead, it will be a variable input to your circuit.
+
+### Subquery Limits
+
+For the Axiom V2 mainnet release, the client circuit is allowed to make up to **`128`** total subqueries.
+
+Aside from this total limit, there are also specific limits on the number of transaction and receipt subqueries allowed, which depend on particular properties of the transactions / receipts being queried. These limits are described in the [Transaction Subquery](transaction-subquery) and [Receipt Subquery](receipt-subquery) sections.
+
+### Subquery Types
+
+There are 6 types of Axiom subqueries:
+
+- [Header Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/header-subquery.md) -- returns data contained in a block header
+- [Account Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/account-subquery.md) -- returns data for an account at a historic block
+- [Storage Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/storage-subquery.md) -- returns the value at a storage slot for an account at a historic block
+- [Solidity Nested Mapping Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/solidity-nested-mapping-subquery.md) -- returns the value stored in a contract's nested mapping at a particular sequence of keys at a historic block
+- [Transaction Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/transaction-subquery.md) -- returns data contained in a transaction
+- [Receipt Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/receipt-subquery.md) -- returns data contained in a transaction receipt
+
+For further details on how to use each type of Axiom subquery, see the corresponding section below.
+
+<DocCardList />

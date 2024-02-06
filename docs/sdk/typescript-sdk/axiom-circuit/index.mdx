@@ -1,0 +1,35 @@
+---
+description: Reference for writing a client circuit
+sidebar_position: 1
+sidebar_label: Axiom Circuit
+---
+
+import DocCardList from "@theme/DocCardList";
+
+# Axiom Circuit Reference
+
+A client circuit is defined as an async function `f: (inputs: T) => Promise<void>` where you must specify the input type `T` of your circuit for type safety. You can name the circuit function anything you want.
+
+### Circuit Inputs
+
+The circuit input should consist of all inputs to your circuit that are variable and _change with each run_ of the circuit. The circuit input type can be any interface where the primitive value types are either [`CircuitValue`](circuit-types#circuitvalue) or [`CircuitValue256`](circuit-types#circuitvalue256). These are protected classes for ZK-specific usage. For example, `Array<CircuitValue>` is an allowed type, while `Array<number>` is not. Constant values that do not change should be included directly inside the circuit function itself.
+
+#### Input Parsing
+
+When you `prove` a circuit, the inputs will be provided in a JSON or a Typescript interface. This input type should have the same structure as your circuit input type `T` but the primitive types can be `number | string | bigint`. This type is auto-parsed into the circuit input type `T`. For example, `Array<number>` will be parsed into `Array<CircuitValue>`.
+
+:::warning
+There will be a run-time error if you provide an input that cannot be parsed to the circuit input type (for example if you try to parse a 256 bit `bigint` into `CircuitValue`).
+:::
+
+### Circuit Outputs
+
+Within the circuit function, you can specify what values to add to the output via the [`addToCallback`](/sdk/typescript-sdk/axiom-circuit/system-functions.md#addtocallback) function. This takes either [`CircuitValue`](circuit-types#circuitvalue) or [`CircuitValue256`](circuit-types#circuitvalue256). Each value is cast to `uint256` and then to `bytes32` and added to an array `axiomResults: bytes32[]`. These results are what your callback smart contract will receive when your query is successfully fulfilled.
+
+:::info
+`CircuitValue` and `CircuitValue256` are always interpreted as `uint` types. This means when they are added to `axiomResults`, they are always **left-padded** with 0s to `uint256` and then cast to `bytes32`.
+:::
+
+See the following pages to learn about the two types available inside a circuit, `CircuitValue` and `CircuitValue256`, and to see a complete listing of functions available to call inside a client circuit. If you have installed the Client SDK locally in your project as an npm dependency, these functions should be detectable by your IDE: we have made these functions a [global library](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-d-ts.html) for access within the circuit code.
+
+<DocCardList />
