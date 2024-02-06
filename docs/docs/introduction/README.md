@@ -21,7 +21,7 @@ To fulfill queries, Axiom performs three steps:
 
 - **Read:** Axiom uses ZK proofs to trustlessly read from block headers, states, transactions, and receipts in any historical Ethereum block. All Ethereum on-chain data is encoded in one of these forms, meaning that Axiom can access anything an archive node can.
 - **Compute:** Once data has been ingested, Axiom applies verified compute on top. Developers can specify their own computation in Javascript, and the validity of each computation is verified in a ZK proof. Try out the [quickstart](/docs/introduction/quickstart.md) to play around with the available compute primitives.
-- **Verify:** Axiom accompanies each query result with a ZK validity proof that (1) the input data was correctly fetched from the chain and (2) the compute was correctly applied. This ZK proof is verified on-chain in the Axiom smart contract, and the final result is then trustlessly available for use in your smart contract.
+- **Verify:** Axiom accompanies each result with a ZK validity proof that (1) the input data was correctly fetched from the chain and (2) the compute was correctly applied. This ZK proof is verified on-chain in the Axiom smart contract, and the final result is then trustlessly available for use in your smart contract.
 
 Because they are verified by a ZK proof, results from Axiom have **security cryptographically equivalent to that of Ethereum** and make no assumptions about crypto-economics, incentives, or game theory. We believe this offers the highest possible guarantee for smart contract applications.
 
