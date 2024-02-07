@@ -71,7 +71,7 @@ export const circuit = async (inputs: CircuitInputs) => {
 };
 ```
 
-To learn more about how to fetch receipt data, see [Receipts and Logs](/docs/developer-resources/receipts-and-logs).
+To learn more about how to fetch receipt data, see [Receipts and Logs](/docs/developer-resources/on-chain-data/transaction-receipts-and-logs).
 
 ### Compiling, Proving, and Generating `sendQuery` Arguments
 
