@@ -17,12 +17,13 @@ The number of receipt subqueries allowed in a single client circuit depends on t
 - Receipt subqueries are not supported for transactions with more than `400` logs or for transactions with any log containing more than `2048` bytes in the data field.
 - If the receipt subquery is for a transaction with more than `80` logs, no log can have greater than `1024` bytes in the data field.
 - If your circuit has any of:
+
   - transaction subquery for a transaction with input data length greater than `32768` bytes
   - transaction subquery for a transaction with RLP encoded access list length greater than `16384` bytes
   - receipt subquery for a transaction with more than `80` logs,
 
   then only **`1`** receipt subquery is allowed in the circuit.
-  
+
 - Otherwise if your circuit has any of:
 
   - transaction subquery for a transaction with input data length greater than `8192` bytes
@@ -49,9 +50,11 @@ Note that all functions in the interface are **async**.
 
 #### Example Usage
 
-[Etherscan (Goerli) link for below transaction log](https://goerli.etherscan.io/tx/0x9890aaedc5df95de7d535faf10c8d1a96a262b79e0fcb2ed52939c8ebd049d29#eventlog)
+Here is an example of how to use our receipt interface to access a [specific transaction log](https://goerli.etherscan.io/tx/0x9890aaedc5df95de7d535faf10c8d1a96a262b79e0fcb2ed52939c8ebd049d29#eventlog).
 
 ![Looking up receipt logs on Etherscan](@site/static/img/etherscan_receipt.png)
+
+After looking up the log on Etherscan, you can access it on-chain using the following Axiom circuit code:
 
 ```typescript
 const receipt: Receipt = getReceipt(9726229, 1);
@@ -60,6 +63,12 @@ const topic: CircuitValue256 = await log.topic(
   1,
   "0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c"
 );
+```
+
+To find the `eventSchema`, which is `0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c` in this case, you can use [`cast sig-event`](https://book.getfoundry.sh/reference/cast/cast-sig-event) from Foundry:
+
+```bash
+cast sig-event "Deposit(address indexed dst, uint256 wad)"
 ```
 
 :::info
@@ -118,7 +127,7 @@ log: (logIdx: ConstantValue | CircuitValue) => Log;
 This function returns another interface `Log` for getting data from a specific log in the transaction receipt.
 This requires an additional input `logIdx` which specifies the index _within the transaction_ of the log to query.
 
-#### `Log` Interface
+### `Log` Interface
 
 ```typescript
 /**

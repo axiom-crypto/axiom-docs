@@ -44,7 +44,11 @@ For events defined in Solidity, the `eventSchema` is the first topic in the log.
 event Transfer(address from, address to, uint256 value)
 ```
 
-the `eventSchema` is `keccak256("Transfer(address,address,uint256))`. The `eventSchema` always lives at index 0 of a log, and is a unique identifier of the event. You can view the `eventSchema` on Etherscan as the topic 0 of the log.
+the `eventSchema` is `keccak256("Transfer(address,address,uint256))`. The `eventSchema` always lives at index 0 of a log, and is a unique identifier of the event. You can view the `eventSchema` on Etherscan as the topic 0 of the log. To find the `eventSchema` of a log, you can use [`cast sig-event`](https://book.getfoundry.sh/reference/cast/cast-sig-event) from Foundry:
+
+```bash
+cast sig-event "Transfer(address indexed from, address indexed to, uint256 amount)"
+```
 
 ![Looking up eventSchemas on Etherscan](@site/static/img/etherscan_eventSchema.png)
 

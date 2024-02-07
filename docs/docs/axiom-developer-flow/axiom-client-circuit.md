@@ -85,7 +85,7 @@ You must specify the computation over historic on-chain Ethereum data you wish t
   - **Comparison:** `isZero`, `isEqual`, `isLessThan`, `checkEqual`, `checkLessThan`
 - [**Axiom Subqueries**](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries), which request ZK-authenticated on-chain data from Axiom.
 
-See [Developer Resources](/docs/developer-resources) for help writing and debugging Axiom circuits. For examples of circuit code, see [Axiom Cookbook](/docs/developer-resources/axiom-cookbook) and [Tutorial](/docs/tutorial/setting-up).
+See [Developer Resources](/docs/developer-resources) for help writing and debugging Axiom circuits, including [Finding Storage Slots](/docs/developer-resources/finding-storage-slots) and [Receipts and Logs](/docs/developer-resources/receipts-and-logs) for an explanation of how to find commonly used types of on-chain data. For examples of circuit code, see [Axiom Cookbook](/docs/developer-resources/axiom-cookbook) and [Tutorial](/docs/tutorial/setting-up).
 
 ### Circuit Outputs
 
