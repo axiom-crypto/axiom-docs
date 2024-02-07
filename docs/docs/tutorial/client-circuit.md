@@ -71,6 +71,8 @@ export const circuit = async (inputs: CircuitInputs) => {
 };
 ```
 
+To learn more about how to fetch receipt data, see [Receipts and Logs](/docs/developer-resources/on-chain-data/transaction-receipts-and-logs).
+
 ### Compiling, Proving, and Generating `sendQuery` Arguments
 
 You can run the following commands on the circuit.
@@ -86,4 +88,4 @@ npx axiom circuit prove app/axiom/swapEvent.circuit.ts --provider $PROVIDER_URI_
 npx axiom circuit query-params <callback addr> --sourceChainId 11155111 --refundAddress <your wallet addr> --provider $PROVIDER_URI_SEPOLIA
 ```
 
-More details on the [Axiom CLI](/sdk/typescript-sdk/axiom-cli) reference page.
+More details are available on the [Axiom CLI](/sdk/typescript-sdk/axiom-cli) reference page.

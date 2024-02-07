@@ -70,7 +70,7 @@ const tx: Tx = getTx(blockNumber, txIdx);
 const receipt: Receipt = getReceipt(blockNumber, txIdx);
 ```
 
-For a more complete list and detailed descriptions of all of the Axiom Subqueries available, see the [Axiom Subqueries page](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/) in the SDK docs.
+For a complete list of all of the Axiom Subqueries available, see the [Axiom Subqueries page](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/) in the SDK docs. To learn more about how to find commonly used types of on-chain data, see [Finding Storage Slots](/docs/developer-resources/on-chain-data/finding-storage-slots) and [Receipts and Logs](/docs/developer-resources/on-chain-data/transaction-receipts-and-logs).
 
 ### ZK Primitives
 
