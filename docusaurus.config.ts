@@ -5,6 +5,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const config: Config = {
   title: 'Axiom V2 Developer Docs',
   favicon: 'img/favicon.ico',
@@ -91,7 +94,13 @@ const config: Config = {
 //          sidebarId: 'examplesSidebar',
 //          position: 'left',
 //         label: 'Examples',
-//        },        
+//        },  
+        {
+          type: 'docSidebar',
+          sidebarId: 'versionsSidebar',
+          position: 'right',
+          label: 'Versions',
+        },
         {
           href: 'https://github.com/axiom-crypto',
           label: 'GitHub',
@@ -100,8 +109,8 @@ const config: Config = {
       ],
     },
     algolia: {
-      appId: '1GK3YLZJDP',
-      apiKey: 'fb7b90854a919921a4ea4813c44aa6c4',
+      appId: process.env.ANGOLIA_APP_ID,
+      apiKey: process.env.ANGOLIA_API_KEY,
       indexName: 'axiom',
     },
     footer: {
