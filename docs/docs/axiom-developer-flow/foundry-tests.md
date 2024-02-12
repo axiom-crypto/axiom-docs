@@ -5,87 +5,80 @@ sidebar_position: 4
 
 # Testing with Foundry
 
-To test your Axiom integration using Foundry tests, we have provided an extension to the standard Foundry test library with Axiom-specific cheatcodes in `AxiomTest.sol`, which can be used in place of `forge-std/Test.sol`. Using these cheatcodes requires the Axiom SDK, which is provided via the npm package `@axiom-crypto/client`, which you can install using:
-
-```bash npm2yarn
-npm install @axiom-crypto/client
-```
+To test your Axiom integration using Foundry tests, we have provided an extension to the standard Foundry test library with Axiom-specific cheatcodes in `AxiomTest.sol`, which can be used in place of `forge-std/Test.sol`. Using these cheatcodes requires Node and NPM to be installed in your environment.
 
 ## Setting up `AxiomTest`
 
 Our `AxiomTest.sol` library provides cheatcodes for testing Axiom clients and circuits on mainnet and testnet forks. To use it, first import `AxiomTest.sol` in place of the usual `forge-std/Test.sol` in your Foundry test contract. This will only work on networks where Axiom V2 is deployed (currently `mainnet` and `sepolia`). For setup:
 
+- Add `using Axiom for Query` to your test contract
+- Specify your circuit input type as a Solidity struct called `AxiomInput`, making sure that your types match up with your `CircuitValue`/`CircuitValue256` input types
 - Call `_createSelectForkAndSetupAxiom` to configure the forked environment and set up Axiom-specific configurations.
-- Specify your Axiom client circuit and input path, compile the circuit to get your `querySchema`, and initialize your Axiom client contract with it.
+- Specify your Axiom client circuit path, compile the circuit to get your `querySchema`, and initialize your Axiom client contract with it.
 
 The `querySchema` is a unique identifier of your Axiom client circuit. When accepting callbacks from Axiom in your client contract, you should validate the callback by checking the `querySchema` in the callback matches the one corresponding to your client circuit. For more about how `querySchema` is constructed, see [Axiom Query Format](/protocol/protocol-design/axiom-query-protocol/axiom-query-format#query-schema).
 
 ```solidity title="AxiomExampleTest.t.sol"
 pragma solidity ^0.8.0;
 
-import { AxiomTest, AxiomVm } from "../src/test/AxiomTest.sol";
+import "@axiom-crypto/axiom-std/AxiomTest.sol";
 import { AxiomExampleTest } from "./AxiomExample.sol";
 
 contract AxiomExampleTest is AxiomTest {
+    using Axiom for Query;
+
+    struct AxiomInput {
+        uint64 input0;
+        uint64 input1;
+        uint256 input2;
+        uint64 blockNumber;
+        address addr;
+        bytes32 slot;
+    }
+
     AxiomExample public axiomExample;
+    AxiomInput public input;
+    bytes32 public querySchema;
 
     function setUp() public {
         _createSelectForkAndSetupAxiom("sepolia", 5_057_320);
 
-        // compile Axiom circuit and initialize Axiom client contract with querySchema
-        circuitPath = "test/circuit/average.circuit.ts";
-        inputPath = "test/circuit/input.json";
-        querySchema = axiomVm.compile(circuitPath, inputPath);
+        input = AxiomInput({
+            input0: 0,
+            input1: 1234,
+            input2: 5678,
+            blockNumber: 0,
+            addr: address(0x0),
+            slot: bytes32(0)
+        });
+
+        querySchema = axiomVm.readCircuit("test/circuit/example.circuit.ts");
         axiomExample = new AxiomExample(axiomV2QueryAddress, uint64(block.chainid), querySchema);
     }
 }
 ```
 
-## Test Sending a Query
+## Test Sending a Query and Receiving a Callback
 
-To test sending a query to your Axiom client contract using your Axiom client circuit, you can use the `axiomVm.sendQueryArgs` cheatcode to generate input arguments for `AxiomV2Query.sendQuery`. This will generate a ZK proof for the client circuit run on the given inputs and format it correctly into query arguments to be sent on-chain to Axiom V2.
-
-```solidity title="AxiomExampleTest.t.sol"
-    function test_axiomSendQueryWithArgs() public {
-        AxiomVm.AxiomSendQueryArgs memory args = axiomVm.sendQueryArgs(
-            inputPath, address(axiomExample), callbackExtraData, feeData
-        );
-        axiomV2Query.sendQuery{ value: args.value }(
-            args.sourceChainId,
-            args.dataQueryHash,
-            args.computeQuery,
-            args.callback,
-            args.feeData,
-            args.userSalt,
-            args.refundee,
-            args.dataQuery
-        );
-    }
-```
-
-If you prefer, you can use the `axiomVm.getArgsAndSendQuery` cheatcode to directly send the on-chain query to `AxiomV2Query`.
-
-## Test Receiving a Callback
-
-To test the integration between your Axiom client circuit and callback function implemented in your client contract, we provide a cheatcode to prank the callback as shown in the diagram below.
+To test the integration between your Axiom client circuit and callback function implemented in your client contract, we've created the `Query`  struct to faciliate sending and fulfilling queries, as shown in the diagram below. First use the `query` function to generate a `Query` struct `q`. This will generate a ZK proof for the client circuit run on the given inputs and format it correctly into query arguments to be sent on-chain to Axiom V2. You can then call the cheatcode `q.send()` to send the query to the `AxiomV2Query` contract. Finally, call the `q.prankFulfill()` cheatcode, which prank calls the `axiomV2Callback` function on the target contract from the `AxiomV2Query` contract.
 
 ![Axiom test flow in Foundry](@site/static/img/axiom_test_prank.svg)
 
-The `axiomVm.fulfillCallbackArgs` will run the Axiom client circuit on the given inputs and format the outputs into a format amenable to triggering a callback on the Axiom client contract. The `axiomVm.prankCallback` cheatcode then prank calls the `axiomV2Callback` function on the target contract from the `AxiomV2Query` contract.
+```solidity title="AxiomExampleTest.t.sol"
+    function test_axiomSendQueryWithArgs() public {
+       // create a query into Axiom with default parameters
+        Query memory q = query(querySchema, abi.encode(input), address(averageBalance));
 
-```solidity
-    function test_AxiomCallbackWithArgs() public {
-        AxiomVm.AxiomFulfillCallbackArgs memory args = axiomVm.fulfillCallbackArgs(
-            inputPath,
-            address(axiomExample),
-            callbackExtraData,
-            feeData,
-            msg.sender
-        );
-        axiomVm.prankCallback(args);
+        // send the query to Axiom
+        q.send();
+
+        // prank fulfillment of the query, returning the Axiom results 
+        bytes32[] memory results = q.prankFulfill();
+
+        // validate that the results are what you would expect, and that the `axiomExample` processed the callback correctly
     }
 ```
 
 :::info
-This cheatcode skips the crucial(!) step of actually validating Axiom query results on-chain. In production, this callback would come from `AxiomV2Query` after ZK proof verification, but we prank this step here to enable a purely local testing environment.
+The `prankFulfill` cheatcode skips the crucial(!) step of actually validating Axiom query results on-chain. In production, this callback would come from `AxiomV2Query` after ZK proof verification, but we prank this step here to enable a purely local testing environment.
 :::

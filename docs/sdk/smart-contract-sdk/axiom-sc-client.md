@@ -6,7 +6,7 @@ sidebar_label: Axiom Smart Contract Client
 
 # Axiom Smart Contract Client
 
-We provide an Axiom smart contract client library to enable your integration
+We provide an Axiom smart contract client library to enable your integration. 
 
 ## Installation
 
@@ -16,7 +16,7 @@ To install in a Foundry project, run:
 forge install axiom-crypto/axiom-v2-periphery
 ```
 
-and add `@axiom-crypto/v2-periphery/=lib/axiom-v2-periphery/src` in `remappings.txt`.
+and add `@axiom-crypto/v2-periphery/=lib/axiom-v2-periphery/src` in `remappings.txt`. Note: `axiom-v2-periphery` is automatically installed for you if you add [axiom-std](./axiom-test.md) to your Foundry project.
 
 ## Smart Contract Client Reference
 
