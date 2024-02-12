@@ -97,9 +97,9 @@ const config: Config = {
 //        },  
         {
           type: 'docSidebar',
-          sidebarId: 'versionsSidebar',
+          sidebarId: 'changelogSidebar',
           position: 'right',
-          label: 'Versions',
+          label: 'Changelog',
         },
         {
           href: 'https://github.com/axiom-crypto',
