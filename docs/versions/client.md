@@ -6,6 +6,19 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.4
+
+### @axiom-crypto/client
+
+- Requires `.circuit.ts` file to export `defaultInputs` object with circuit's default inputs
+- Updates `prove` command to take in both the `compiledCircuit` json and `inputsFile` json
+- Removes `inputSchema` from `Axiom` class instantiation input object
+- Blocks tx type 3 transactions and receipts for now
+
+### @axiom-crypto/react
+
+- Blocks tx type 3 transactions and receipts for now
+
 ## v2.0.3
 
 ### @axiom-crypto/client

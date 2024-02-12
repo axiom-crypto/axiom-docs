@@ -6,6 +6,11 @@ sidebar_label: axiom-v2-periphery
 
 # axiom-v2-periphery
 
+## v0.1.1
+
+- Moves `axiom-std` test-related functionality to separate repository
+- Retains abstract client contract, interfaces, and libraries
+
 ## v0.1.0
 
 - Implements abstract contract `AxiomV2Client` that users can inherit to receive a callback from AxiomV2
