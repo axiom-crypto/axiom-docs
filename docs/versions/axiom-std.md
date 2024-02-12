@@ -8,5 +8,5 @@ sidebar_label: axiom-std
 
 ## v0.1.0 (0aac665)
 
-- Contains test-related functionality
-- Includes CLI for compiling and proving
+- Contains functionality for testing contracts that accept Axiom V2 callbacks
+- Includes CLI for compiling and proving Axiom circuits
