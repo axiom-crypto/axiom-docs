@@ -5,7 +5,11 @@ sidebar_position: 4
 
 # Testing with Foundry
 
-To test your Axiom integration using Foundry tests, we have provided an extension to the standard Foundry test library with Axiom-specific cheatcodes in `AxiomTest.sol`, which can be used in place of `forge-std/Test.sol`. Using these cheatcodes requires Node and NPM to be installed in your environment.
+To test your Axiom integration using Foundry tests, we have provided an extension to the standard Foundry test library with Axiom-specific cheatcodes in `AxiomTest.sol`, which can be used in place of `forge-std/Test.sol`. Using these cheatcodes requires Node and NPM to be installed in your environment. To install in a Foundry project, run:
+
+```bash
+forge install axiom-crypto/axiom-std
+```
 
 ## Setting up `AxiomTest`
 
