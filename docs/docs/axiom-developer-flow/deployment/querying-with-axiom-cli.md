@@ -17,8 +17,8 @@ npm install @axiom-crypto/client
 Once you have written your Axiom client circuit, follow the instructions for [circuit compilation and proving](/docs/axiom-developer-flow/axiom-client-circuit#compiling-and-proving).
 
 ```bash
-npx axiom circuit compile app/axiom/example.circuit.ts
-npx axiom circuit prove app/axiom/example.circuit.ts --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit compile app/axiom/example.circuit.ts --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/inputs.json --provider $PROVIDER_URI_SEPOLIA
 ```
 
 This will write JSON outputs to the file `app/axiom/data/proven.json` which can be used to generate an Axiom query. Addional CLI options can be found in the [Axiom CLI](/sdk/typescript-sdk/axiom-cli) reference.

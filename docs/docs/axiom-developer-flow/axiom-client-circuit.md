@@ -17,12 +17,13 @@ npm i @axiom-crypto/client
 Writing an Axiom client circuit for your application involves three steps:
 
 - Define the input schema for your circuit by defining a `CircuitInputs` type in terms of the allowed `CircuitValue` and `CircuitValue256` [types](/sdk/typescript-sdk/axiom-circuit/circuit-types).
+- Export a `defaultInputs` object that contains each of the fields of `CircuitInputs`. These will be default inputs that are used when compiling the circuit, but different inputs will be used when proving the circuit.
 - Write the circuit function using the [Axiom SDK](/sdk/overview).
 - Expose public inputs and outputs of the circuit to your smart contract application using `addToCallback`.
 
 Axiom client circuits generally take the structure below.
 
-```typescript title="example.circuit.ts"
+```typescript title="app/axiom/example.circuit.ts"
 import {
   add,
   mul,
@@ -41,6 +42,15 @@ export interface CircuitInputs {
   blockNumber: CircuitValue;
   address: CircuitValue;
   slot: CircuitValue256;
+}
+
+export const defaultInputs = {
+  input0: 10,
+  input1: 200,
+  input2: 5000,
+  blockNumber: 5100000,
+  address: "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
+  slot: 0,
 }
 
 export const circuitFunction = async (inputs: CircuitInputs) => {
@@ -103,7 +113,7 @@ Once we have finished writing our circuit code, we can use the [Axiom CLI](/sdk/
 
 Circuit inputs are specified as JSON files conforming to the `CircuitInputs` schema.
 
-```json title="input.json"
+```json title="app/axiom/data/inputs.json"
 {
   "input0": 0,
   "input1": 1234,
@@ -121,7 +131,7 @@ Allowed primitive types can be `number | string | bigint`. The JSON will be auto
 To compile, run
 
 ```bash
-npx axiom circuit compile example.circuit.ts --function circuitFunction --inputs input.json --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit compile app/axiom/example.circuit.ts --function circuitFunction --provider $PROVIDER_URI_SEPOLIA
 ```
 
 where `$PROVIDER_URI_SEPOLIA` should be set to a JSON-RPC provider URL. Upon successful compilation, a JSON of build artifacts will be output to `data/compiled.json`. In particular, the JSON contains the **`querySchema`** which is a unique identifier of your circuit, independent of the inputs. You will need this to validate Axiom callbacks in your client contract. For more about how the `querySchema` is constructed from your Axiom circuit, read about it in [Axiom Query Format](/protocol/protocol-design/axiom-query-protocol/axiom-query-format#query-schema).
@@ -133,13 +143,13 @@ To see all `axiom circuit compile` options, run `npx axiom circuit compile --hel
 Now that your circuit is compiled, you can generate proofs on different inputs. For any input in `input.json`, you can run with
 
 ```bash
-npx axiom circuit prove axiom/circuit.ts --function circuitFunction --inputs input.json --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/input.json --provider $PROVIDER_URI_SEPOLIA
 ```
 
-This will output a JSON of your run outputs to `data/output.json`. In particular, it has a field **`computeResults`**, which consists of a `bytes32[]` array of the values you specified to add to the callback. If you change a field in your `input.json`, rerunning should change the `computeResults`.
+This will output a JSON of your proven data to `app/data/proven.json`. In particular, it has a field **`computeResults`**, which consists of a `bytes32[]` array of the values you specified to add to the callback. If you change a field in your `inputs.json`, rerunning should change the `computeResults`.
 
 :::info
-We recommend running your circuit on a different input than the default input used to compile the circuit: this ensures that the circuit does not have unwanted hardcoded assumptions.
+We recommend running your circuit on a different set of inputs than the `defaultInputs`` used to compile the circuit: this ensures that the circuit does not have unwanted hardcoded assumptions.
 :::
 
 To see all `axiom circuit prove` options, run `npx axiom circuit prove --help` or see the [Axiom CLI docs](/sdk/typescript-sdk/axiom-cli.md#prove "mention").
