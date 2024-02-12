@@ -6,13 +6,13 @@ sidebar_label: axiom-v2-periphery
 
 # axiom-v2-periphery
 
-## v0.1.1
+## v1.1.0
 
 - Moves `axiom-std` test-related functionality to separate repository
 - Retains abstract client contract, interfaces, and libraries
 
-## v0.1.0
+## v1.0.0
 
-- Implements abstract contract `AxiomV2Client` that users can inherit to receive a callback from AxiomV2
-- Users can inherit `AxiomTest` to prank their contracts for testing callbacks
-- Implementation example: [https://github.com/axiom-crypto/axiom-quickstart]
+- Imports abstract contract `AxiomV2Client` that users can inherit to receive a callback from Axiom V2.
+- Import interfaces and libraries from `axiom-v2-contracts` repo.
+- Implement Foundry cheatcodes to help test Axiom integrations.
