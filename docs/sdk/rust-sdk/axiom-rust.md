@@ -113,3 +113,11 @@ Options:
   -V, --version                Print version
 ```
 
+For example:
+
+```bash
+cargo run --example account_age -- --input data/account_age_input.json -k 12 -p <PROVIDER_URI> <CMD>
+```
+
+where `PROVIDER_URI` is a JSON-RPC URI, and `CMD` is `mock`, `prove`, `keygen`, or `run`.
+
