@@ -1,16 +1,16 @@
 ---
 description: Writing a Rust Axiom Client Circuit
 sidebar_position: 5
-sidebar_label: axiom-sdk-rs
+sidebar_label: Axiom Rust SDK
 ---
 
-# axiom-sdk-rs
+# Axiom Rust SDK
 
 :::warning
 The Rust circuit SDK assumes more background in writing circuits with [halo2-lib](../../protocol/zero-knowledge-proofs/getting-started-with-halo2.md). We recommend using the Typescript SDK for most applications.
 :::
 
-The Rust SDK allows you to write more complex circuit, fully utilizing the capabilities of `halo2-lib`. 
+The Rust SDK allows you to write more complex circuits, fully utilizing the capabilities of `halo2-lib`. 
 
 ## Installation
 

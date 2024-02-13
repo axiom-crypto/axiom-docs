@@ -155,5 +155,5 @@ We recommend running your circuit on a different set of inputs than the `default
 To see all `axiom circuit prove` options, run `npx axiom circuit prove --help` or see the [Axiom CLI docs](/sdk/typescript-sdk/axiom-cli.md#prove "mention").
 
 :::info
-If you want some more advanced functionality, check out our [Rust SDK](../developer-resources/axiom-rust-client.md).
+If you want some more advanced functionality, check out our [Rust SDK](../../sdk/rust-sdk/axiom-rust.md).
 :::
