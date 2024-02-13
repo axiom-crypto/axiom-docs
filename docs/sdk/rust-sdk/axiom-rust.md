@@ -4,7 +4,7 @@ sidebar_position: 5
 sidebar_label: Axiom Rust Circuit
 ---
 
-# Axiom Rust SDK
+# Axiom Rust Circuit
 
 :::warning
 The Rust circuit SDK assumes more background in writing circuits with [halo2-lib](../../protocol/zero-knowledge-proofs/getting-started-with-halo2.md). We recommend using the Typescript SDK for most applications.
@@ -93,5 +93,23 @@ fn main() {
     run_cli::<AccountAgeInput>();
 }
 ```
-This will run a CLI that allows you to run mock proving, key generation, and proving of your circuit.
+The `main` function will run a CLI that allows you to run mock proving, key generation, and proving of your circuit. The CLI has the following commands:
+
+```
+Commands:
+  mock    Run the mock prover
+  keygen  Generate new proving & verifying keys
+  prove   Generate a new proof
+  run     Generate an Axiom compute query
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+  -k, --degree <DEGREE>        To determine the size of your circuit (12..25)
+  -p, --provider <PROVIDER>    JSON RPC provider URI
+  -i, --input <INPUT_PATH>     JSON inputs to feed into your circuit
+  -d, --data-path <DATA_PATH>  For saving build artifacts
+  -c, --config <CONFIG>        For custom advanced usage only   
+  -h, --help                   Print help
+  -V, --version                Print version
+```
 
