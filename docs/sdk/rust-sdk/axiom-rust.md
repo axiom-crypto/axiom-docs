@@ -1,7 +1,7 @@
 ---
 description: Writing a Rust Axiom Client Circuit
 sidebar_position: 5
-sidebar_label: Axiom Rust SDK
+sidebar_label: Axiom Rust Circuit
 ---
 
 # Axiom Rust SDK
