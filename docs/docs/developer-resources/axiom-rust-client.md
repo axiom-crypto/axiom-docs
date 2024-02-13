@@ -1,5 +1,5 @@
 ---
-description: Fast client circuit prototyping in-browser
+description: Writing a Rust Axiom Client Circuit
 sidebar_position: 5
 sidebar_label: axiom-sdk-rs
 ---
