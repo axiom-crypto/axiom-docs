@@ -22,8 +22,8 @@ npx axiom circuit <command>
 
 Command used to compile your circuit. This only needs to be done once on any given piece of circuit code. It does not depend on the circuit inputs, but a default input must be provided.
 
-```
-Usage: npx axiom circuit compile [options] <circuitPath>
+```bash
+Usage: axiom circuit compile [options] <circuitPath>
 
 compile an Axiom circuit
 
@@ -32,11 +32,11 @@ Arguments:
 
 Options:
   -st, --stats               print stats
+  -m, --mock                 generate a mock vkey and query schema
   -p, --provider [provider]  JSON-RPC provider (https)
-  -i, --inputs [inputs]      inputs json file
   -o, --outputs [outputs]    outputs json file
   -f, --function [function]  function name in typescript circuit
-  -h, --help                 display help for command
+  --cache [cache]            cache output file
 ```
 
 - circuit path: the path to the Typescript file with your circuit code
@@ -64,25 +64,26 @@ The `vk`, `inputSchema`, and `circuit` are base64 encoded strings that along wit
 
 Command to run your compiled circuit on a given input. This command must be run after circuit is compiled.
 
-```
-Usage: npx axiom circuit prove [options] <circuitPath>
+```bash
+Usage: axiom circuit prove [options] <compiledPath> <inputsFile>
 
 prove an Axiom circuit
 
 Arguments:
-  circuitPath                          path to the typescript circuit file
+  compiledPath                         path to the compiled circuit json file
+  inputsFile                           path to the inputs json file
 
 Options:
   -s, --sourceChainId [sourceChainId]  source chain id
-  -c, --compiled [compiled]            path of the compiled circuit json file
+  -m, --mock                           generate a mock compute proof
   -st, --stats                         print stats
   -p, --provider [provider]            JSON-RPC provider (https)
-  -i, --inputs [inputs]                inputs json file
   -o, --outputs [outputs]              outputs json file
-  -f, --function [function]            function name in typescript circuit
+  --cache [cache]                      cache input file
 ```
 
-- circuit path: the path to the Typescript file with your circuit code
+- compiled path: the path to the compiled circuit json file
+- inputs file: json file containing inputs to the circuit
 - source chain id: the chain from which data is being read
 - compiled: the path to the JSON file output by `compile`
 - provider: the JSON-RPC provider URL
@@ -110,10 +111,10 @@ The `computeQuery` and `dataQuery` are the many structs that make up the calldat
 
 Command to generate the exact arguments to use to create a transaction calling `sendQuery` on the `AxiomV2Query` contract.
 
-```
-Usage: npx axiom circuit query-params [options] <callback address>
+```bash
+Usage: axiom circuit query-params [options] <callback address>
 
-generate parameters to send a query into Axiom
+generate parameters to send a Query into Axiom
 
 Arguments:
   callback address                             callback address
@@ -125,9 +126,11 @@ Options:
   --caller [caller]                            caller (defaults to refundAddress)
   --maxFeePerGas [maxFeePerGas]                maxFeePerGas
   --callbackGasLimit [callbackGasLimit]        callbackGasLimit
+  -m, --mock                                   generate a mock query
   -p, --provider [provider]                    JSON-RPC provider (https)
   -pv, --proven [proven]                       `axiom circuit prove` outputs path
   -o, --outputs [outputs]                      query-params outputs path
+  -a, --args-map                               sendQuery argments output as mapping for use with Forge
 ```
 
 - callback address: the target contract address with the callback function
@@ -137,9 +140,11 @@ Options:
 - caller: optional argument for the sender address, only used for `queryId` calculation
 - maxFeePerGas: optional argument to set maxFeePerGas, in wei, for Axiom to use on the fulfillment and callback transaction. Default is `25000000000 wei`
 - callbackGasLimit: optional argument to set the gas limit for the callback function. Default is `200000` gas.
+- mock: generate mock query data
 - provider: the JSON-RPC provider URL for the chain the transaction will be sent on
 - proven: the path to the JSON output by `prove`
 - output: the output path for `query-params`
+- args-map: arguments for sendQuery output as a mapping (as opposed to an array) for use with Forge
 
 The output will be a JSON written to the output path corresponding to the interface
 

@@ -39,7 +39,7 @@ The circuit is where you define the on-chain data you'd like to access through A
 
 - blockNumber
 - address
-- average 
+- average
 
 To use your circuit in our system, you need to compile every time the circuit is modified. The resulting compilation artifacts will be used in your smart contract as well as the Next.js webapp. You can run the following command to compile the circuit.
 

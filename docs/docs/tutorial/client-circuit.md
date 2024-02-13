@@ -79,10 +79,10 @@ You can run the following commands on the circuit.
 
 ```bash
 # Compile
-npx axiom circuit compile app/axiom/swapEvent.circuit.ts
+npx axiom circuit compile app/axiom/swapEvent.circuit.ts --provider $PROVIDER_URI_SEPOLIA
 
 # Prove
-npx axiom circuit prove app/axiom/swapEvent.circuit.ts --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/inputs.json --provider $PROVIDER_URI_SEPOLIA
 
 # Generate sendQuery arguments
 npx axiom circuit query-params <callback addr> --sourceChainId 11155111 --refundAddress <your wallet addr> --provider $PROVIDER_URI_SEPOLIA

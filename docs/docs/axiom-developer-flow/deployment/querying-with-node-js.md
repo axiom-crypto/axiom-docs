@@ -18,10 +18,6 @@ Once you've generated the `Script` scaffold of the Axiom app, you can find the s
 const axiom = new Axiom({
     circuit: circuit,
     compiledCircuit: compiledCircuit,
-    inputSchema: {
-        blockNumber: "uint32",
-        address: "address",
-    },
     chainId: "11155111",  // Sepolia
     provider: process.env.PROVIDER_URI_SEPOLIA as string,
     privateKey: process.env.PRIVATE_KEY_SEPOLIA as string,
@@ -36,7 +32,6 @@ The Axiom configuration parameters are explained here:
 
 - `circuit`: the exported circuit function from your circuit file (here, it's `app/axiom/average.circuit.ts`)
 - `compiledCircuit`: the compiled circuit json file from the `npx axiom circuit compile` command
-- `inputSchema`: javascript object containing the names of the inputs and their Solidity types as strings
 - `chainId`: the chain ID that the circuit will read its on-chain data from
 - `provider`: a node provider (such as Quicknode, Alchemy, Infura); should be hidden and specified in the `.env` file
 - `privateKey`: your test account's private key; should be hidden and specified in the `.env` file

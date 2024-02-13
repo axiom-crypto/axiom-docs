@@ -22,7 +22,6 @@ export class Axiom<T> {
   constructor(inputs: {
     circuit: (inputs: T) => Promise<void>;
     compiledCircuit: AxiomV2CompiledCircuit;
-    inputSchema: {[arg: string]: CircuitInputType};
     chainId: string;
     provider: string;
     privateKey?: string;
@@ -38,29 +37,11 @@ This class is generic over a type `T`, which is the input type of the circuit. S
 - `compiledCircuit`: the JSON build output from the CLI `compile` function
 - `chainId`: the chain ID the on-chain data is gotten from. Only used for computation of `sendQueryArgs`. Does not affect circuit compilation or runs.
 - `provider`: the JSON-RPC URL provider, this is used to make RPC calls to get on-chain data values (that are _not_ ZK-verified)
-- `callback`: 
+- `callback`:
   - `target`: the target contract address with the callback function
   - `extraData`: optional parameter to specify hex string of `bytes` for any extra data to pass to the callback
-- `inputSchema`: JavaScript object containing the names of the inputs and their Solidity types as strings. The `inputSchema` must be provided separately because Typescript types are not available at runtime. The `inputSchema` can contain primitive Solidity types (ie. `uint8`, `bytes32`, `address`, etc) and arrays of primitive Solidity types. For example:
-
-```typescript
-inputSchema: {
-    blockNumber: "uint32",
-    address: "address",
-    slots: "bytes32[]",
-}
-
-async const circuit = (inputs: {
-  blockNumber: CircuitValue, 
-  address: CircuitValue, 
-  slots: CircuitValue256[]
-}) => {
-  ...
-}
-```
 
 The functions in the `Axiom` class are:
-
 
 ### init
 
@@ -112,7 +93,7 @@ async prove(input: RawInput<T>): Promise<AxiomV2SendQueryArgs>
 
 Runs the circuit to generate a client-side ZK proof. The same circuit can be run on multiple different inputs.
 
-- `input`: this is any type that can be parsed into the predefined circuit input type `T`, as defined by the `inputSchema`
+- `input`: this is any type that can be parsed into the predefined circuit input type `T`
   - This will fail at runtime if, for example, you try to parse a hex string representing `uint256` into `CircuitValue`
 
 The return type of `prove` is the `AxiomV2SendQueryArgs` interface:
