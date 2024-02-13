@@ -24,13 +24,13 @@ npm i @axiom-crypto/client
 
 ### Axiom Smart Contract SDK
 
-To install the Axiom smart contract SDK, use the `axiom-crypto/axiom-v2-periphery` Foundry package.
+To install the Axiom smart contract SDK, use the `axiom-crypto/axiom-std` Foundry package.
 
 ```
-forge install axiom-crypto/axiom-v2-periphery
+forge install axiom-crypto/axiom-std
 ```
 
-and add `@axiom-crypto/v2-periphery/=lib/axiom-v2-periphery/src` in `remappings.txt`.
+and add `@axiom-crypto/axiom-std/=lib/axiom-std/src` in `remappings.txt`.
 
 ### Axiom React SDK
 

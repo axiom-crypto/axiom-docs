@@ -10,23 +10,19 @@ We have provided test utilities for Axiom smart contract clients in the form of 
 
 ## Installation
 
-Using these cheatcodes requires the Axiom Typescript SDK provided via the NPM package `@axiom-crypto/client`:
-
-```bash npm2yarn
-npm install @axiom-crypto/client
-```
+Using these cheatcodes requires Node and NPM to be installed (for the Axiom JavaScript cheatcodes to run).
 
 To install in a Foundry project, run:
 
 ```bash
-forge install axiom-crypto/axiom-v2-periphery
+forge install axiom-crypto/axiom-std
 ```
 
-and add `@axiom-crypto/v2-periphery/=lib/axiom-v2-periphery/src` in `remappings.txt`.
+and add `@axiom-crypto/axiom-std/=lib/axiom-std/src` in `remappings.txt`.
 
 ## Cheatcode Library Reference
 
-Our cheatcode library consists of `AxiomTest.sol` and `AxiomVm.sol`, both of which are in `@axiom-crypto/v2-periphery/test`. **Usage of these cheatcodes requires Foundry fork tests.**
+Our cheatcode library consists of `AxiomTest.sol` and `AxiomVm.sol`, both of which are in `@axiom-crypto/axiom-std/src`. **Usage of these cheatcodes requires Foundry fork tests.**
 
 ### `AxiomTest.sol`
 
@@ -36,13 +32,17 @@ This base test contract extends `forge-std/Test.sol` and is a drop-in replacemen
 
 Initializes the cheatcodes on a local fork with network given by `urlOrAlias` at block height `forkBlock`. This function initializes `axiomV2Core` and `axiomV2Query` contracts with deployed addresses, and initializes the `axiomVm` object for future use.
 
+#### `query`
+
+Generates a `Query` struct from a `querySchema`, ABI-encoded `AxiomInput` struct, and a `callbackTarget` address, which can then be used to test sending/fulfilling queries. Can optionally set `callbackExtraData` and `feeData` via a function overload.
+
 ### `AxiomVm.sol`
 
 Axiom cheatcodes are implemented via an instance of the `AxiomVm` contract stored in `AxiomTest` and available to Foundry tests via the `axiomVm` object.
 
-#### `compile`
+#### `readCircuit`
 
-Compiles an Axiom client circuit located at `circuitPath` with default inputs at `inputPath`. Returns the `querySchema` associated to your client circuit.
+Compiles an Axiom client circuit located at `circuitPath`. Returns the `querySchema` associated to your client circuit.
 
 #### `sendQueryArgs`
 
@@ -63,3 +63,15 @@ Convenience function to generate pranked arguments for an Axiom callback and act
 #### `prankOffchainCallback`
 
 Conveninece function which is the analogue of `prankCallback` for the `axiomV2OffchainCallback` callback.
+
+### `Axiom` library (in `AxiomVm.sol`)
+
+Cheatcodes available on the `Query` struct, by using it as a library for the `Query` struct.
+
+#### `send`
+
+Sends a constructed query to `AxiomV2Query`
+
+#### `prankFulfill`
+
+Function to generate pranked arguments for an on-chain submitted Axiom query and then actually prank the `axiomV2Callback` callback fulfillment from the `AxiomV2Query` contract. Must be called after first sending the query.

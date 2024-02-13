@@ -6,13 +6,13 @@ sidebar_label: Smart Contract Integration
 
 # Smart Contract Integration
 
-To receive Axiom query results in your smart contract, you will need to implement an Axiom-specific callback function which will be called after the query results have been ZK-verified on-chain. To do this, first install the Axiom V2 [smart contract client](https://github.com/axiom-crypto/axiom-v2-periphery) in your Foundry project:
+To receive Axiom query results in your smart contract, you will need to implement an Axiom-specific callback function which will be called after the query results have been ZK-verified on-chain. To do this, first install [axiom-std](https://github.com/axiom-crypto/axiom-std) in your Foundry project:
 
 ```bash
-forge install axiom-crypto/axiom-v2-periphery
+forge install axiom-crypto/axiom-std
 ```
 
-and add `@axiom-crypto/v2-periphery/=lib/axiom-v2-periphery/src` to your `remappings.txt`.
+and add `@axiom-crypto/axiom-std/=lib/axiom-std/src` to your `remappings.txt`. Installing `axiom-std` will also install [axiom-v2-periphery](https://github.com/axiom-crypto/axiom-v2-periphery), which contains the client smart contracts and interfaces needed to integrate Axiom V2, and Foundry test utilities specific to testing Axiom applications.
 
 ## Implementing an Axiom Client Contract
 
