@@ -107,8 +107,8 @@ Options:
   -k, --degree <DEGREE>        To determine the size of your circuit (12..25)
   -p, --provider <PROVIDER>    JSON RPC provider URI
   -i, --input <INPUT_PATH>     JSON inputs to feed into your circuit
-  -d, --data-path <DATA_PATH>  For saving build artifacts
-  -c, --config <CONFIG>        For custom advanced usage only   
+  -d, --data-path <DATA_PATH>  For saving build artifacts (optional)
+  -c, --config <CONFIG>        For custom advanced usage only (optional)
   -h, --help                   Print help
   -V, --version                Print version
 ```
