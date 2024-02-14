@@ -1,10 +1,10 @@
 ---
 description: A review of Ethereum data structures
 sidebar_position: 1
-sidebar_label: Ethereum On-chain Data
+sidebar_label: Finding Ethereum On-chain Data
 ---
 
-# Ethereum On-chain Data
+# Finding Ethereum On-chain Data
 
 On-chain data in Ethereum is stored in four different mappings, each of which are encoded in a [Merkle-Patricia trie](https://ethereum.org/en/developers/docs/data-structures-and-encoding/patricia-merkle-trie/). Each **block header** contains commitments to these four tries, thereby committing to all of the current Ethereum state. The types of data this comprises are:
 

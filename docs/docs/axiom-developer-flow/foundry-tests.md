@@ -7,6 +7,10 @@ sidebar_position: 4
 
 To test your Axiom integration using Foundry tests, we have provided an extension to the standard Foundry test library with Axiom-specific cheatcodes in `AxiomTest.sol`, which can be used in place of `forge-std/Test.sol`. Using these cheatcodes requires Node and NPM to be installed in your environment. To install in a Foundry project, run:
 
+What you're testing:
+- Your circuit and contract are compatible, circuit performing computation and getting output, and testing that the output is the output you expect
+- Contract is processing that output correctly-- doing something in your contract with those values, testing application logic with the correct inputs
+
 ```bash
 forge install axiom-crypto/axiom-std
 ```

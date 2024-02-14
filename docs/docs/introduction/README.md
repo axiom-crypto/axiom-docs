@@ -17,11 +17,13 @@ _In conjunction with our V2 release, we are migrating the Axiom V2 testnet from 
 
 #### Overview
 
+Axiom uses ZK proofs to trustlessly read from block headers, states, transactions, and receipts in any historical Ethereum block. All Ethereum on-chain data is encoded in one of these forms, meaning that Axiom can access anything an archive node can.
+
 To fulfill queries, Axiom performs three steps:
 
-- **Read:** Axiom uses ZK proofs to trustlessly read from block headers, states, transactions, and receipts in any historical Ethereum block. All Ethereum on-chain data is encoded in one of these forms, meaning that Axiom can access anything an archive node can.
-- **Compute:** Once data has been ingested, Axiom applies verified compute on top. Developers can specify their own computation in Javascript, and the validity of each computation is verified in a ZK proof. Try out the [quickstart](/docs/introduction/quickstart.md) to play around with the available compute primitives.
-- **Verify:** Axiom accompanies each result with a ZK validity proof that (1) the input data was correctly fetched from the chain and (2) the compute was correctly applied. This ZK proof is verified on-chain in the Axiom smart contract, and the final result is then trustlessly available for use in your smart contract.
+- **Query:** Developers build an Axiom circuit using the Axiom TypeScript SDK where they define the on-chain data they want to access and compute over via a request to Axiom.
+- **Verify:** Axiom accompanies each result with a ZK validity proof that (1) the input data was correctly fetched from the chain and (2) the compute was correctly applied. This ZK proof is verified on-chain in the Axiom smart contract, and the final result is then trustlessly available for use in your smart contract. Optionally, developers can add verified compute on top. Developers can specify their own computation in Javascript, and the validity of each computation is verified in a ZK proof. Try out the [quickstart](/docs/introduction/quickstart.md) to play around with the available compute primitives.
+- **Callback:** Developers define a smart contract to receive ZK-verified results from the `AxiomV2Query` contract upon query fulfillment, after a few minutes. This will allow develoers to access specific values defined in their circuit directly from their smart contract. This is useful for when you want to access these values in your smart contract logic.
 
 Because they are verified by a ZK proof, results from Axiom have **security cryptographically equivalent to that of Ethereum** and make no assumptions about crypto-economics, incentives, or game theory. We believe this offers the highest possible guarantee for smart contract applications.
 
