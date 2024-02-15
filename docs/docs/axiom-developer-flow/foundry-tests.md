@@ -10,6 +10,9 @@ To test your Axiom integration using Foundry tests, we have provided an extensio
 ```bash
 forge install axiom-crypto/axiom-std
 ```
+This library allows you to seamlessly test:
+- Your circuit and contract are compatible, meaning that the circuit verifies a computation with the expected output
+- Your contract processes that output correctly to implement your desired application logic
 
 ## Setting up `AxiomTest`
 
