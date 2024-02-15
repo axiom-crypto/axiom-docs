@@ -6,9 +6,19 @@ These docs are built using the [Docusaurus](https://docusaurus.io/) framework.
 
 ## Local development
 
-To run a local development instance, run:
+Install dependencies before running
 
 ```bash
-npm intall
+npm install
+```
+
+Set the following environment variables to `1`
+
+- `ANGOLIA_APP_ID`
+- `ANGOLIA_API_KEY`
+
+Start the server
+
+```bash
 npm run start
 ```
