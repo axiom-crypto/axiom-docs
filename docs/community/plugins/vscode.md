@@ -31,14 +31,14 @@ Circuits are loaded from a specified location using a customizable glob pattern 
 Compilation requires that the default input be set. 
 
 The output will be written to the directory set in the [extension settings](#extension-settings).
-<img src="@site/static/img/compileCircuitExample.gif" width="500" />
+![Compile Circuit Example](@site/static/img/vscode_compile_circuit.gif)
 
 ### Managing Queries
 
 Queries are managed by Axiom-VScode and saved to the VS code workspace state. 
 
 #### Add a query
-<img src="@site/static/img/addQueryExample.gif" width="500" />
+![Add Query Example](@site/static/img/vscode_add_query.gif)
 
 #### Proving queries
 
@@ -46,7 +46,7 @@ You must compile the circuit and set the query input before running.
 
 You must also set `PROVIDER_URI_SEPOLIA` in the config file defined in the [extension settings](#extension-settings).
 
-<img src="@site/static/img/proveQueryExample.gif" width="500" />
+![Prove Query Example](@site/static/img/vscode_prove_query.gif)
 
 #### Sending queries
 
@@ -54,4 +54,4 @@ You must set the callback address before sending.
 
 You must also set `PRIVATE_KEY_SEPOLIA` in the config file defined in the [extension settings](#extension-settings).
 
-<img src="@site/static/img/sendQueryExample.gif" width="500" />
+![Send Query Example](@site/static/img/vscode_send_query.gif)
