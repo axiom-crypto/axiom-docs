@@ -46,5 +46,5 @@ npm i @axiom-crypto/react
 To install the Axiom Rust SDK, use the `axiom-sdk-rs/axiom-sdk` Rust package.
 
 ```bash
-cargo add axiom-sdk --git https://github.com/axiom-crypto/axiom-sdk-rs
+cargo add axiom-sdk
 ```

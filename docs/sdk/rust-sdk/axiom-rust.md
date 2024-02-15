@@ -16,7 +16,7 @@ The Rust SDK allows you to write more complex circuits, fully utilizing the capa
 
 To install our Rust circuit SDK into a Cargo project, run:
 ```bash
-cargo add axiom-sdk --git https://github.com/axiom-crypto/axiom-sdk-rs
+cargo add axiom-sdk
 ```
 
 ## Overview
