@@ -9,6 +9,7 @@ The Axiom SDK consists of libraries in Typescript, Solidity, and React which ena
 - **Axiom Typescript SDK:** Typescript library with utility functions to write your Axiom client circuit and interface with it.
 - **Axiom Smart Contract SDK:** Solidity library allowing your Axiom smart contract client to handle callbacks for Axiom query results and providing utilities to enable Foundry tests against your Axiom circuit.
 - **Axiom React SDK:** React component and hooks for integrating Axiom into your React or Next.js webapp.
+- **Axiom Rust SDK:** Rust library with utility functions to write your Axiom client circuit.
 
 Documentation for each of these pieces is available in the individual sections below.
 
@@ -38,4 +39,12 @@ To install the Axiom React SDK, use the `@axiom-crypto/react` NPM package.
 
 ```bash npm2yarn
 npm i @axiom-crypto/react
+```
+
+### Axiom Rust SDK
+
+To install the Axiom Rust SDK, use the `axiom-sdk-rs/axiom-sdk` Rust package.
+
+```bash
+cargo add axiom-sdk
 ```
