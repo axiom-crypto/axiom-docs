@@ -9,7 +9,7 @@ These docs are built using the [Docusaurus](https://docusaurus.io/) framework.
 Install dependencies before running
 
 ```bash
-npm intall
+npm install
 ```
 
 Set the following environment variables to `1`
