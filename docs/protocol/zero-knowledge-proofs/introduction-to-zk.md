@@ -66,7 +66,7 @@ The choice of which polynomial commitment scheme to use is extremely important f
 
 To choose a ZK proving stack and start building:
 
-1. First, choose which [arithmetization](introduction-to-zk.md#arithmetizations) to use, along with a developer front-end for writing circuits in that arithmetization.
+1. First, choose which [arithmetization](introduction-to-zk.md#circuit-design-arithmetizations) to use, along with a developer front-end for writing circuits in that arithmetization.
 2. Choose what polynomial commitment scheme to prover/verifier will use. Often this choice is baked into the choice of arithmetization.
 3. Find an existing library that generates proofs from a given arithmetization. (Not recommended: rolling your own.)&#x20;
 
