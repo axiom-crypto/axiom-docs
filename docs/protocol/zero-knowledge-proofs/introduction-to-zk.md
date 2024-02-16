@@ -8,8 +8,8 @@ sidebar_label: Introduction to ZK
 
 A zero knowledge proof (ZKP or just ZK) is a proof of computation satisfying:
 
-* **Succinctness**: the size of the proof is constant (or in some cases logarithmic) in the size of the computation
-* **Zero knowledge**: certain inputs or intermediate variables of the computation can be hidden from the verifier of the proof
+* **Succinctness**: the size of the proof is constant (or in some cases logarithmic) in the size of the computation.
+* **Zero knowledge**: certain inputs or intermediate variables of the computation can be hidden from the verifier of the proof.
 
 Contrary to the name, the succinctness property is more central to current applications of ZK, whereas the zero knowledge aspect is often not used and can be turned off. Succinctness allows us to **compress** expensive computations into ZKPs that are computationally cheap to verify:
 
@@ -42,7 +42,7 @@ The choice of an arithmetization and a front-end for writing in that arithmetiza
 Once we have an arithmetization (vectors + constraints), the prover-verifier dynamic goes as follows:
 
 1. The Prover sends the Verifier some **commitment** to the vectors and further commitments (details omitted) to the constraints.
-2. The Verifier sends the Prover some random numbers
+2. The Verifier sends the Prover some random numbers.
 3. Prover uses the previous commitment, along with some cryptography, to give a **proof** that the supplied vectors actually satisfies the claimed constraints (aka, the computation did what it claimed to do).
 
 The above procedure is _interactive_, since the Verifier needs to provide randomness, but we remark that there is a general way to make it **non-interactive**: see [Fiat-Shamir Heuristic](https://www.zkdocs.com/docs/zkdocs/protocol-primitives/fiat-shamir/). In the non-interactive protocol, the prover does all of their steps _first_ and sends the result to the verifier. The Fiat-Shamir Heuristic allows the verifier to then verify the proof with the same assurance of correctness as if the whole process had been interactive.
@@ -53,8 +53,8 @@ We skipped over some cryptographic details in our overview of the [prover-verifi
 
 The question of how to commit to vectors is an area of active research. First, most vector commitments translate a vector into a **polynomial** (by [Lagrange interpolation](https://en.wikipedia.org/wiki/Lagrange\_polynomial)) and work with the polynomial. Then, broadly speaking, they currently fall into two categories:
 
-* Use elliptic curve cryptography (not quantum-secure, additional assumptions for security, slower runtime)
-* Hash the polynomials and do some sampling (proof sizes are larger, additional [assumptions](https://a16zcrypto.com/snark-security-and-performance/) for security)
+* Use elliptic curve cryptography (not quantum-secure, additional assumptions for security, slower runtime).
+* Hash the polynomials and do some sampling (proof sizes are larger, additional [assumptions](https://a16zcrypto.com/snark-security-and-performance/) for security).
 
 For an overview of polynomial commitments from the API perspective, see this [video](https://learn.0xparc.org/materials/halo2/miscellaneous/polynomial-commitment).
 
@@ -131,6 +131,6 @@ The potential of things ZK can build is tremendous and only increasing exponenti
 
 We haven't gone into the weeds of the math involved with ZK.
 
-* For the classic explanation of ZKPs that you can repeat at dinner parties (no math): see [here](https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/)
+* For the classic explanation of ZKPs that you can repeat at dinner parties (no math): see [here](https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/).
 * For a more math-y intro that gives a better flavor of how ZK works now, see Vitalik's post on QAPs [here](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649). This uses a more straightforward arithmetization known as R1CS.
 * And of course, contact us to ask questions, give suggestions, and discuss further!
