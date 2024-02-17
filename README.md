@@ -12,7 +12,7 @@ Install dependencies before running
 npm install
 ```
 
-Set the following environment variables to `1`
+Open a `.env` file and set the following environment variables to `1` in the file:
 
 - `ANGOLIA_APP_ID`
 - `ANGOLIA_API_KEY`
