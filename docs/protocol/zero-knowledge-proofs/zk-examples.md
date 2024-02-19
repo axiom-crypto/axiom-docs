@@ -40,7 +40,7 @@ To force $$a_i$$ to be a known constant $$C$$, put:
 
 |`a`|`b`|`c`|`q_L`|`q_R`|`q_M`|`q_C`|`q_O`|
 |---|---|---|---|---|---|---|---|
-|`a_i`|`*`|`*`|`1`|`0`|`0`|`0`|`-C`|`0`|
+|`a_i`|`*`|`*`|`1`|`0`|`0`|`-C`|`0`|
 
 Note that $$b_i, c_i$$ can be any numbers and it doesn't matter.
 
