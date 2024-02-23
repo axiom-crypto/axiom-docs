@@ -89,6 +89,12 @@ const config: Config = {
           position: 'left',
           label: 'Protocol',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'communitySidebar',
+          position: 'left',
+          label: 'Community',
+        },
 //        {
 //          type: 'docSidebar',
 //          sidebarId: 'examplesSidebar',
