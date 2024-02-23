@@ -6,9 +6,11 @@ sidebar_label: Axiom VSCode Extension
 
 # Axiom VSCode Extension
 
+This extension, built by [Standard Crypto](https://standardcrypto.vc), provides tools to manage compilation, proving, and query construction from an Axiom circuit in VSCode.  You can view the source code on [Github](https://github.com/standard-crypto/axiom-vscode). 
+
 ## Installation
 
-Find the `Axiom Crypto` extension and install it.
+Install the `Axiom Crypto` extension from [VisualStudio marketplace](https://marketplace.visualstudio.com/items?itemName=standard-crypto.axiom-crypto) within VSCode.
 
 ## Extension Settings
 
