@@ -24,7 +24,7 @@ A Bloom filter over all logs emitted in the receipt.
 
 ### `logs`
 
-When a Solidity contract emits an event, that event is saved in that transaction receipt's `log` array. Within each log is up to three `topics` and an arbitrary amount of `data`. You can view the logs for a transaction in the **Logs** tab on Etherscan.
+When a Solidity contract emits an event, that event is saved in that transaction receipt's `log` array. Within each log are up to three `topics` and an arbitrary amount of `data`. You can view the logs for a transaction in the **Logs** tab on Etherscan.
 
 ![Looking up logs on Etherscan](@site/static/img/etherscan_receipts_large.png)
 

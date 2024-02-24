@@ -1,5 +1,5 @@
 ---
-description: Overview on storage slots and how to use them in your Axiom client.
+description: Overview of storage slots and how to use them in your Axiom client.
 sidebar_position: 2
 sidebar_label: Finding Storage Slots
 ---

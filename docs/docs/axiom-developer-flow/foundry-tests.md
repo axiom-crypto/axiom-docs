@@ -67,7 +67,7 @@ contract AxiomExampleTest is AxiomTest {
 
 ## Test Sending a Query and Receiving a Callback
 
-To test the integration between your Axiom client circuit and callback function implemented in your client contract, we've created the `Query`  struct to faciliate sending and fulfilling queries, as shown in the diagram below. First use the `query` function to generate a `Query` struct `q`. This will generate a ZK proof for the client circuit run on the given inputs and format it correctly into query arguments to be sent on-chain to Axiom V2. You can then call the cheatcode `q.send()` to send the query to the `AxiomV2Query` contract. Finally, call the `q.prankFulfill()` cheatcode, which prank calls the `axiomV2Callback` function on the target contract from the `AxiomV2Query` contract.
+To test the integration between your Axiom client circuit and callback function implemented in your client contract, we've created the `Query`  struct to facilitate sending and fulfilling queries, as shown in the diagram below. First use the `query` function to generate a `Query` struct `q`. This will generate a ZK proof for the client circuit run on the given inputs and format it correctly into query arguments to be sent on-chain to Axiom V2. You can then call the cheatcode `q.send()` to send the query to the `AxiomV2Query` contract. Finally, call the `q.prankFulfill()` cheatcode, which prank calls the `axiomV2Callback` function on the target contract from the `AxiomV2Query` contract.
 
 ![Axiom test flow in Foundry](@site/static/img/axiom_test_prank.svg)
 

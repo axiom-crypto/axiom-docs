@@ -21,7 +21,7 @@ npx axiom circuit compile app/axiom/example.circuit.ts --provider $PROVIDER_URI_
 npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/inputs.json --provider $PROVIDER_URI_SEPOLIA
 ```
 
-This will write JSON outputs to the file `app/axiom/data/proven.json` which can be used to generate an Axiom query. Addional CLI options can be found in the [Axiom CLI](/sdk/typescript-sdk/axiom-cli) reference.
+This will write JSON outputs to the file `app/axiom/data/proven.json` which can be used to generate an Axiom query. Additional CLI options can be found in the [Axiom CLI](/sdk/typescript-sdk/axiom-cli) reference.
 
 :::info
 Axiom CLI will look for `inputs.json`, `compiled.json`, and `proven.json` in a default location of `app/axiom/data`. If those files are located elsewhere, you will need to supply `--inputs`, `--compiled`, and `--proven` flags, respectively.
