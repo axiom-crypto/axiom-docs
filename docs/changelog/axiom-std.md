@@ -6,7 +6,7 @@ sidebar_label: axiom-std
 
 # axiom-std
 
-## v0.1.4 (145fb36)
+## v0.1.4 (dc98b83)
 
 - Move caller to `Query.send` from `prankFulfill`
 - Capture stdout and stderr from FFI commands to display legibly in Foundry logs
