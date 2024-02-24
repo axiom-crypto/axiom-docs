@@ -12,7 +12,7 @@ If you would like to run this specific example on your own, you'll have to use A
 
 Example deployment of the app here: [https://autonomous-airdrop-example.vercel.app](https://autonomous-airdrop-example.vercel.app/)
 
-In this walkthrough, we'll walk discuss each of the pages and the major components that they touch.
+In this walkthrough, we'll discuss each of the pages and the major components that they touch.
 
 ## System Diagram
 
