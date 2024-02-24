@@ -215,7 +215,7 @@ isEqual: (a: ConstantValue | CircuitValue, b: ConstantValue | CircuitValue) => C
  * @param len - The length of the resulting bit array.
  * @returns The array of bits representing the input circuit value.
  */
-numToBits: (a: ConstantValue | CircuitValue, len: ConstantValue) => CircuitValue;
+numToBits: (a: ConstantValue | CircuitValue, len: ConstantValue) => CircuitValue[];
 
 /**
  * Asserts that two circuit values are equal.
