@@ -55,7 +55,7 @@ For these larger transaction and receipt subqueries, we have more fine-grained l
 
 ## Deposit and Withdraw
 
-You can deposit ETH into the `AxiomV2Query` contract by calling the `deposit` function or by transfering ETH together with your on-chain query. You can withdraw from your unescrowed balance by calling the `withdraw` function.
+You can deposit ETH into the `AxiomV2Query` contract by calling the `deposit` function or by transferring ETH together with your on-chain query. You can withdraw from your unescrowed balance by calling the `withdraw` function.
 
 ## Refunds
 
