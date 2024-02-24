@@ -70,7 +70,7 @@ Cheatcodes available on the `Query` struct, by using it as a library for the `Qu
 
 #### `send`
 
-Sends a constructed query to `AxiomV2Query`
+Sends a constructed query to `AxiomV2Query`. Optionally provide `address caller` to specify the address from which the call originates from -- defaults to `msg.sender`.
 
 #### `prankFulfill`
 
