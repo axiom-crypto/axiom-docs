@@ -112,5 +112,5 @@ This is where we actually do something with the `axiomResults` from the fulfille
 
 Note that we took special care in parsing `axiomResults[2]` to `address` due to the way zero padding works in Solidity for `uint160` vs `bytes20`.
 
-After parsing the `axiomResults`, we validate them before transfering the airdrop tokens to the user.
+After parsing the `axiomResults`, we validate them before transferring the airdrop tokens to the user.
 Lastly we emit the `ClaimAirdrop` event.
