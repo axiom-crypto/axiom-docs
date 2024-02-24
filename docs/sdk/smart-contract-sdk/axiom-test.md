@@ -34,7 +34,7 @@ Initializes the cheatcodes on a local fork with network given by `urlOrAlias` at
 
 #### `query`
 
-Generates a `Query` struct from a `querySchema`, ABI-encoded `AxiomInput` struct, and a `callbackTarget` address, which can then be used to test sending/fulfilling queries. Can optionally set `callbackExtraData` and `feeData` via a function overload.
+Generates a `Query` struct from a `querySchema`, ABI-encoded `AxiomInput` struct, and a `callbackTarget` address, which can then be used to test sending/fulfilling queries. Can optionally set `callbackExtraData`, `feeData`, and `caller` via a function overload.
 
 ### `AxiomVm.sol`
 
@@ -70,7 +70,7 @@ Cheatcodes available on the `Query` struct, by using it as a library for the `Qu
 
 #### `send`
 
-Sends a constructed query to `AxiomV2Query`. Optionally provide `address caller` to specify the address from which the call originates from -- defaults to `msg.sender`.
+Sends a constructed query to `AxiomV2Query`.
 
 #### `prankFulfill`
 
