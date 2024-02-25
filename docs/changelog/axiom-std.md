@@ -6,9 +6,9 @@ sidebar_label: axiom-std
 
 # axiom-std
 
-## v0.1.4 (dc98b83)
+## v0.1.4 (e10e6e3)
 
-- Move caller to `Query.send` from `prankFulfill`
+- Move `caller` to `query` from `prankFulfill`
 - Capture stdout and stderr from FFI commands to display legibly in Foundry logs
 - Make functions in `Axiom` library `public` to enable `vm.expectEmit()` to work correctly in `prankFulfill`
 
