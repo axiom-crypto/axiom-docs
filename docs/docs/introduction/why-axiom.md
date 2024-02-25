@@ -18,9 +18,9 @@ The remainder of this section summarizes key considerations for deciding whether
 
 Key benefits Axiom provides for on-chain applications include:
 
-* **Access to historic on-chain data:** Axiom allows smart contracts to access the entire history of Ethereum in a flexible way. You can mix and match types of data and data across blocks in a single query.  For example, a query can include a block header from one block, transaction data from another block, and account data from yet another block. Because Axiom queries are verified by ZK, Axiom provides the first trustless way to access this data.
+* **Access to historic on-chain data:** Axiom allows smart contracts to access the entire history of Ethereum in a flexible way. You can mix and match types of data across blocks in a single query.  For example, a query can include a block header from one block, transaction data from another block, and account data from yet another block. Because Axiom queries are verified by ZK, Axiom provides the first trustless way to access this data.
 * **Flexibility and Composability:** On-chain application developers currently need to store enough data in contract storage to service all future use cases, whether anticipated or not. Axiom gives developers the flexibility to leverage historical data in their protocol long after a protocol has been deployed. Moreover, developers can permissionlessly compose with the on-chain data of any other on-chain application without modifying those contracts. 
-* **Access ZK using only Solidity and Typescript:** By using the Axiom SDK, smart contract developers can access ZK-powered tools using Solidity and Typescript alone. Integrating into Axiom requires only writing a single callback on your smart contract, and no ZK verifier smart contract deploys are necessary.
+* **Access ZK using only Solidity and Typescript:** By using the Axiom SDK, smart contract developers can access ZK-powered tools using Solidity and Typescript alone. Integrating into Axiom requires only writing a single callback on your smart contract, and no ZK verifier smart contract deployments are necessary.
 
 Limitations to consider include:
 
