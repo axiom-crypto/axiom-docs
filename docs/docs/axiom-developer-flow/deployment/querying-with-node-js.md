@@ -46,7 +46,7 @@ After initialization, you are now ready to generate a compute proof of your circ
 ```typescript
 import inputs from './axiom/data/inputs.json';
 ...
-const args = await axiom.prove(inputs);
+await axiom.prove(inputs);
 ```
 
 ## Sending the Query
@@ -54,7 +54,45 @@ const args = await axiom.prove(inputs);
 The output of `axiom.prove` is arguments that will be passed into `axiom.sendQuery` to actually send the query on-chain.
 
 ```typescript
-const receipt = await axiom.sendQuery(args);
+const receipt = await axiom.sendQuery();
 ```
+
+## Sending the Query with IPFS
+
+Another option for sending a query also involves an on-chain transaction, but the query data is provided by pinning that data to IPFS. We currently provide support for [Pinata](https://www.pinata.cloud/) and [Quicknode](https://www.quicknode.com/), with wider support planned in the near future.
+
+:::info
+If you have a specific service that you'd like to have support for, you can also open an issue or a PR in our [axiom-tools](https://github.com/axiom-crypto/axiom-tools) repository.
+:::
+
+The flow for sending a query with IPFS is essentially the same, with a few minor differences. You will need to update the `Axiom` initialization object to include an `ipfsClient` and then eventually call `sendQueryWithIpfs`. An example is provided below:
+
+```typescript
+import { PinataIpfsClient, QuicknodeIpfsClient } from "@axiom-crypto/tools";
+
+// Use either Pinata or Quicknode
+const ipfsClient = new PinataIpfsClient(process.env.PINATA_JWT); 
+// const ipfsClient = new QuicknodeIpfsClient(process.env.QUICKNODE_API_KEY, process.env.QUICKNODE_GATEWAY);
+
+const axiom = new Axiom({
+    circuit: circuit,
+    compiledCircuit: compiledCircuit,
+    chainId: "11155111",  // Sepolia
+    provider: process.env.PROVIDER_URI_SEPOLIA as string,
+    privateKey: process.env.PRIVATE_KEY_SEPOLIA as string,
+    callback: {
+        target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
+    },
+    // Additional `ipfsClient` field
+    ipfsClient: ipfsClient,
+});
+await axiom.init();
+await axiom.prove(inputs);
+
+// Use `sendQueryWithIpfs`
+const receipt = await axiom.sendQueryWithIpfs();
+```
+
+## Viewing the status of a Query
 
 You can view the status of your query by going to [Axiom Explorer](https://explorer.axiom.xyz). You can find your specific query by checking your query's `queryId` via `args.queryId`.

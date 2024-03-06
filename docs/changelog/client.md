@@ -6,6 +6,27 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.5
+
+### @axiom-crypto/client
+
+- IPFS pinning (currently only via Pinata and Quicknode) support
+- Sending on-chain queries with IPFS data
+- ABI and contract addresses moved to client package
+- Additional ways to update parameters
+
+### @axiom-crypto/react
+
+- Fixes passing in undefined callback extraData (defaults to `0x`)
+
+### AxiomREPL
+
+- Fixes typescript circuit default export
+
+### create-axiom-client
+
+- Fixes for package manager auto-detection
+
 ## v2.0.4
 
 ### @axiom-crypto/client
