@@ -6,6 +6,17 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.6
+
+### @axiom-crypto/client
+
+- Fixes compiled circuit output
+- Fixes backwards compatibility with previous compiled circuits
+
+### @axiom-crypto/react
+
+- Fixes backwards compatibility with previous compiled circuits
+
 ## v2.0.5
 
 ### @axiom-crypto/client
