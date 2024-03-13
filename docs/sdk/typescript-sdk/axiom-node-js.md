@@ -27,6 +27,8 @@ export class Axiom<T> {
     privateKey?: string;
     version?: string;
     callback: AxiomV2CallbackInput;
+    capacity?: AxiomV2CircuitCapacity;
+    ipfsClient?: IpfsClient;
   })
 }
 ```
