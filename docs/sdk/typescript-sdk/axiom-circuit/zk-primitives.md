@@ -293,12 +293,4 @@ pow: (a: ConstantValue | CircuitValue, b: ConstantValue | CircuitValue, c?: stri
  * @returns The hash value.
  */
 poseidon: (...args: (ConstantValue | CircuitValue)[]) => CircuitValue;
-
-/**
- * Retrieves the value of a circuit value.
- *
- * @param a - The circuit value.
- * @returns The value of the circuit value.
- */
-value: (a: CircuitValue) => bigint;
 ```
