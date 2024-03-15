@@ -10,6 +10,7 @@ sidebar_label: Client SDK
 
 ### @axiom-crypto/client
 
+- Breaking change in `Axiom.sendQuery()`, which no longer takes any arguments
 - Fixes compiled circuit output
 - Fixes backwards compatibility with previous compiled circuits
 
