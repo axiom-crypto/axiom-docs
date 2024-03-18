@@ -11,9 +11,9 @@ sidebar_label: AxiomREPL
 - Write an Axiom circuit function directly in the web browser.
 - Compile and prove the Axiom circuit.
 - See results from generating proofs in the Axiom circuit which would be sent to a callback function.
-- Submit queries to the `AxiomV2QueryMock` test contract on Sepolia testnet.
+- Submit queries to the `AxiomV2Query` contract on Ethereum mainnet or `AxiomV2QueryMock` test contract on Sepolia testnet.
 
-AxiomREPL references data from Sepolia testnet.
+AxiomREPL currently supports Ethereum mainnet and Sepolia testnet.
 
 :::info
 AxiomREPL has been tested and works as expected in Google Chrome, Brave, and Safari. AxiomREPL currently does not work in Firefox
