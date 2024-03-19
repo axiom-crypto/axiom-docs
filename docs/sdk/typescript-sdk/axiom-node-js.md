@@ -90,7 +90,7 @@ setCallback(callback: {
 
 Set configuration options for the callback contract.
 
-- `target`: the target contract address with the callback function and the 
+- `target`: the target contract address that inherits from `AxiomV2Client` to implement the function to accept the callback
 - `extraData`: optional parameter to specify hex string of `bytes` for any extra data to pass to the callback
 
 ### prove
