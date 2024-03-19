@@ -84,7 +84,9 @@ const axiom = new Axiom({
         target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
     },
     // Additional `ipfsClient` field
-    ipfsClient: ipfsClient,
+    options: {
+        ipfsClient: ipfsClient,
+    },
 });
 await axiom.init();
 await axiom.prove(inputs);
