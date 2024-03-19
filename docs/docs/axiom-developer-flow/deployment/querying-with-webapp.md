@@ -41,7 +41,26 @@ cd app
 npm run dev
 ```
 
-You can then follow the on-screen directions to build and send a query. The following sections describe different parts of the Next.js webapp, so you can modify them as needed.
+## Editing Your Webapp's Settings
+
+All Axiom-related settings are stored in `app/src/lib/webappSettings.ts`. You can edit this file to change things like your circuit, default inputs, callback info, etc.
+
+```typescript title="app/src/lib/webappSettings.ts"
+import compiledCircuit from "../../axiom/data/compiled.json";
+import inputs from "../../axiom/data/inputs.json";
+import AverageBalanceAbi from "./abi/AverageBalance.json";
+
+export const WebappSettings = {
+  compiledCircuit,
+  inputs,
+  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_SEPOLIA as string,
+  chainId: "11155111",
+  callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
+  callbackAbi: AverageBalanceAbi,
+}
+```
+
+You can then follow the on-screen directions to build and send a query. The following sections describe different parts of the Next.js webapp, so you can modify them as necessary.
 
 ## The `AxiomProvider` wrapper for `AxiomCircuitProvider`
 
@@ -52,7 +71,7 @@ The `app/src/app/axiomProvider.tsx` file contains an `AxiomProvider` wrapper for
 
 import { useEffect, useState } from "react";
 import { AxiomCircuitProvider } from "@axiom-crypto/react";
-import compiledCircuit from "../../axiom/data/compiled.json";
+import { WebappSettings } from "@/lib/webappSettings";
 
 export default function AxiomProvider({
   children
@@ -64,9 +83,9 @@ export default function AxiomProvider({
 
   return (
     <AxiomCircuitProvider
-      compiledCircuit={compiledCircuit}
-      provider={process.env.NEXT_PUBLIC_PROVIDER_URI_SEPOLIA as string}
-      chainId={"11155111"}
+      compiledCircuit={WebappSettings.compiledCircuit}
+      provider={WebappSettings.provider}
+      chainId={WebappSettings.chainId}
     >
       {mounted && children}
     </AxiomCircuitProvider>
@@ -107,7 +126,7 @@ You can pass data into the `useAxiomCircuit` hook and then call `build()` on it 
 
 import { useAxiomCircuit } from "@axiom-crypto/react";
 import { useEffect } from "react";
-import jsonInputs from "../../../axiom/data/inputs.json";
+import { WebappSettings } from "@/lib/webappSettings";
 
 export default function BuildQuery({
   inputs,
@@ -115,7 +134,7 @@ export default function BuildQuery({
   callbackExtraData,
   refundee,
 }: {
-  inputs: UserInput<typeof jsonInputs>;
+  inputs: UserInput<typeof WebappSettings.inputs>;
   callbackAddress: string;
   callbackExtraData: string;
   refundee: string;
@@ -125,7 +144,7 @@ export default function BuildQuery({
     builtQuery,
     setParams,
     areParamsSet,
-  } = useAxiomCircuit<typeof jsonInputs>();
+  } = useAxiomCircuit<typeof WebappSettings.inputs>();
 
   // Set the parameters for the component
   useEffect(() => {
@@ -154,9 +173,7 @@ Once those query parameters are built, they are saved into the `builtQuery` vari
 
 ```typescript title="app/src/app/components/SendQuery.tsx"
 "use client";
-
 import { Constants } from "@/shared/constants";
-
 import { useWriteContract, useSimulateContract } from "wagmi";
 import { useAxiomCircuit } from '@axiom-crypto/react';
 
@@ -164,7 +181,10 @@ export default function SendQueryComponent() {
   const { builtQuery } = useAxiomCircuit();
 
   // Pass the full builtQuery object into wagmi's `useSimulateContract`
-  const { data } = useSimulateContract(builtQuery!);
+  const { data } = useSimulateContract({
+    ...builtQuery!,
+    address: builtQuery!.address as `0x${string}`,
+  });
   const { writeContract } = useWriteContract();
 
   return (

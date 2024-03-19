@@ -6,6 +6,19 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.7
+
+### @axiom-crypto/client
+
+- Support Base and Base Sepolia
+- Allow additional overrides
+- L2 fee calculation
+- Moves `Axiom` constructor object's `ipfsClient` key into `options`
+
+### @axiom-crypto/react
+
+- Support Base and Base Sepolia
+
 ## v2.0.6
 
 ### @axiom-crypto/client
