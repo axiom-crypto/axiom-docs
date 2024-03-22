@@ -101,7 +101,7 @@ You can view the status of your query by going to [Axiom Explorer](https://explo
 
 ## Using Different Chains
 
-We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `chainId` and `provider` fields to the appropriate values for the chain you want to use. Ensure that the `privateKey` value that you pass in is also funded on the chain that you are using and that the callback target is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
+We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `chainId` and `provider` fields to the appropriate values for the chain you want to use. Ensure that the `privateKey` that you pass in is also funded on the chain that you are using and that the callback target is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
 
 ```typescript
 const axiom = new Axiom({

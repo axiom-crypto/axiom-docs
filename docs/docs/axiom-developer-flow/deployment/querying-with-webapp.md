@@ -200,6 +200,22 @@ export default function SendQueryComponent() {
 
 Once the query is submitted on-chain, you can handle the additional logic as you see fit.
 
+## Using Different Chains
+
+We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `WebappSettings` object to the appropriate values for the chain you'd like to use. Ensure that the `callbackTarget` is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
+
+```typescript title="app/src/lib/webappSettings.ts"
+...
+export const WebappSettings = {
+  compiledCircuit,
+  inputs,
+  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_BASE_SEPOLIA as string,
+  chainId: "84532",
+  callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
+  callbackAbi: AverageBalanceAbi,
+}
+```
+
 ## Additional Reference
 
 For full references on `AxiomCircuitProvider` and `useAxiomCircuit`, see the [SDK Reference](/sdk/react-sdk/axiom-react.md).
