@@ -6,6 +6,10 @@ sidebar_label: Rust SDK
 
 # Rust SDK
 
+## v0.1.1
+
+- Fixes Ethers import
+
 ## v0.1.0
 
 - Initial release of Axiom Rust SDK.
