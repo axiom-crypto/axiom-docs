@@ -6,6 +6,11 @@ sidebar_label: axiom-std
 
 # axiom-std
 
+## v0.1.6 (100a9bc)
+
+- Add `peekResults` function to `Axiom`
+- Bump `@axiom-crypto/client` version to v2.0.7
+
 ## v0.1.5 (0adda22)
 
 - Add `ast = true` in `foundry.toml` in reaction to [foundry-rs/foundry#7197](https://github.com/foundry-rs/foundry/pull/7197)
