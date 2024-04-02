@@ -6,6 +6,17 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.8
+
+### @axiom-crypto/client
+
+- Update Base Sepolia defaults
+- Tweaks for external integrations
+
+### @axiom-crypto/react
+
+- Update Base Sepolia defaults
+
 ## v2.0.7
 
 ### @axiom-crypto/client
