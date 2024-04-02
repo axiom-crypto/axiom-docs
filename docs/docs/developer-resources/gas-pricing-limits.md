@@ -19,7 +19,7 @@ The fulfillment cost of an Axiom query includes:
 - gas to trigger the final smart contract callback
 - a fee charged by Axiom on a per-query basis
 
-Axiom passes through gas costs to the user and collects an additional fee for each query. The `AxiomV2Query` contract escrows funds for each query from your balance to ensure that you can cover the payment. This amount is calculated on mainnet as
+Axiom passes through gas costs to the user and collects an additional fee for each query. The `AxiomV2Query` contract escrows funds for each query from your balance to ensure that you can cover the payment. This maximum query price is calculated on mainnet as
 
 ```
 maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + axiomQueryFee;
@@ -37,21 +37,6 @@ The parameters set by Axiom are:
 <TabItem value="Mainnet" label="Mainnet">
 - `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
 - `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
-</TabItem>
-<TabItem value="Sepolia" label="Sepolia">
-- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
-- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
-</TabItem>
-<TabItem value="Base Sepolia" label="Base Sepolia">
-- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
-- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
-- `overrideAxiomQueryFee`: Computed so that 
-```
-maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataGasFee + axiomQueryFee
-```
-where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy.
-</TabItem>
-</Tabs>
 
 The parameters set by the user for each query are:
 
@@ -59,6 +44,37 @@ The parameters set by the user for each query are:
 - `callbackGasLimit`: The gas limit allocated for use in the callback.
 
 If either of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas` and `callbackGasLimit` by calling the `increaseQueryGas` function.
+</TabItem>
+<TabItem value="Sepolia" label="Sepolia">
+
+- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
+- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
+
+The parameters set by the user for each query are:
+
+- `maxFeePerGas`: The max fee per gas that the prover should use in the fulfill query transaction.
+- `callbackGasLimit`: The gas limit allocated for use in the callback.
+
+If either of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas` and `callbackGasLimit` by calling the `increaseQueryGas` function.
+</TabItem>
+<TabItem value="Base Sepolia" label="Base Sepolia">
+
+- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
+- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
+
+The parameters set by the user for each query are:
+
+- `maxFeePerGas`: The max fee per gas that the prover should use in the fulfill query transaction.
+- `callbackGasLimit`: The gas limit allocated for use in the callback.
+- `overrideAxiomQueryFee`: Computed so that
+
+```
+maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataGasFee + axiomQueryFee
+```
+
+where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy. If any of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas`, `callbackGasLimit`, and `overrideAxiomQueryFee` by calling the `increaseQueryGas` function.
+</TabItem>
+</Tabs>
 
 The `AxiomV2Query` contract will escrow `maxQueryPri` from the user's balance for a query. This is the maximum cost of fulfilling the query. After the prover has fulfilled the query, they can refund any
 portion of the `maxQueryPri` not used in gas or the `axiomQueryFee` back to the `refundee` specified in the query. The refund is sent to the user's balance.
