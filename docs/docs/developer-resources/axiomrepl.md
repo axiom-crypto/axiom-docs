@@ -16,5 +16,5 @@ sidebar_label: AxiomREPL
 AxiomREPL currently supports Ethereum mainnet, Sepolia testnet, and Base Sepolia testnet.
 
 :::info
-AxiomREPL has been tested and works as expected in Google Chrome, Brave, and Safari. AxiomREPL currently does not work in Firefox
+AxiomREPL is supported on Google Chrome, Brave, and Safari. We do not currently offer support for Firefox or on mobile.
 :::
