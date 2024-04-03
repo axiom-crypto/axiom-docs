@@ -6,6 +6,12 @@ sidebar_label: axiom-std
 
 # axiom-std
 
+## v0.1.7 (f9f71f2)
+
+- Add support for Base Sepolia
+- Add support for testing on chains Axiom is not yet deployed on
+- Bump `@axiom-crypto/client` version to v2.0.8
+
 ## v0.1.6 (100a9bc)
 
 - Add `peekResults` function to `Axiom`
