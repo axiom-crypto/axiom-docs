@@ -6,6 +6,17 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.8
+
+### @axiom-crypto/client
+
+- Update Base Sepolia default addresses and fees
+- Tweaks to allow better integration with VS Code plugin
+
+### @axiom-crypto/react
+
+- Update Base Sepolia default addresses and fees
+
 ## v2.0.7
 
 ### @axiom-crypto/client
