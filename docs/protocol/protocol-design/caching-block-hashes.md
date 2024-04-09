@@ -6,7 +6,7 @@ sidebar_label: Caching Block Hashes
 
 # Caching Block Hashes
 
-The `AxiomV2Core` smart contract caches block hashes from Ethereum's history and allows smart contracts to verify them against this cache. These historic block hashes are stored in two ways:
+The `AxiomV2Core` smart contract caches historic block hashes and allows smart contracts to verify them against this cache. These historic block hashes are stored in two ways:
 
 - As a Merkle root corresponding to a batch of block numbers `[startBlockNumber, startBlockNumber + numFinal)` where `startBlockNumber` is a multiple of `1024`, and `numFinal` is in `[1,1024]`. This is stored in `historicalRoots`.
 - As a padded [Merkle mountain range](https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md) of the Merkle roots of batches of 1024 block hashes starting from genesis to a recent block.
