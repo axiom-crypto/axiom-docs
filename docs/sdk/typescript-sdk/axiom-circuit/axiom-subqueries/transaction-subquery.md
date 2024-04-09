@@ -15,6 +15,7 @@ Transaction subqueries provide data about a transaction that was submitted on-ch
 The number of transaction subqueries allowed in a single client circuit depends on the size of the transaction and [receipt](./receipt-subquery) subqueries in the circuit.
 
 - Transaction subqueries are not supported for transactions with input data length greater than `330000` bytes or for transactions with RLP encoded access list length greater than `131072` bytes.
+- On Base, transaction subqueries are not supported for deposit or withdraw transactions.
 - If your circuit has any of:
 
   - transaction subquery for a transaction with input data length greater than `32768` bytes
