@@ -5,13 +5,9 @@ sidebar_label: Security
 
 # Security
 
-### Axiom V2 Mainnet Repos and Commits
+### Axiom V2 Repos and Commits
 
-All code for the smart contracts and ZK circuits deployed in the Axiom V2 mainnet release are open-sourced at our [Github](https://github.com/axiom-crypto/).
-
-Our smart contracts were audited by [Spearbit](https://spearbit.com/), and our ZK circuits were audited by [Spearbit](https://spearbit.com/), [Zellic](https://www.zellic.io/), and [Trail of Bits](https://www.trailofbits.com/).
-
-The deployment uses the following repos and commits.
+All code for the smart contracts and ZK circuits deployed in Axiom V2 are open-sourced at our [Github](https://github.com/axiom-crypto/). Our smart contracts were audited by [Spearbit](https://spearbit.com/), and our ZK circuits were audited by [Spearbit](https://spearbit.com/), [Zellic](https://www.zellic.io/), and [Trail of Bits](https://www.trailofbits.com/). The deployment uses the following repos and commits.
 
 | Repo                                                                                     | Tag                                                                                | Commit                                                                                                          | Description                                                                     |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |

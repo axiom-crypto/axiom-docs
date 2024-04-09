@@ -9,6 +9,7 @@ sidebar_label: Contract Addresses and Chains
 Axiom V2 is deployed on:
 
 - Ethereum mainnet
+- Base mainnet
 - Sepolia testnet
 - Base Sepolia testnet
 
@@ -18,6 +19,8 @@ For developer convenience, we have deployed the `AxiomV2Core` and `AxiomV2Query`
 
 - `AxiomV2Core` (Mainnet proxy) and `AxiomV2CoreMock` (Sepolia proxy) have the same address
 - `AxiomV2Query` (Mainnet proxy) and `AxiomV2QueryMock` (Sepolia proxy) have the same address.
+- `AxiomV2Core` (Base proxy) and `AxiomV2CoreMock` (Base Sepolia proxy) have the same address
+- `AxiomV2Query` (Base proxy) and `AxiomV2QueryMock` (Base Sepolia proxy) have the same address.
 
 ## Ethereum Mainnet
 
@@ -61,6 +64,49 @@ The following addresses have the `PROVER_ROLE` for `AxiomV2Core` and `AxiomV2Que
 | `AxiomV2Query` Prover 3 | [0xEa23d6b2Ec821967b78a95BC743430cFeCa6bd3B](https://etherscan.io/address/0xEa23d6b2Ec821967b78a95BC743430cFeCa6bd3B) |
 | `AxiomV2Query` Prover 4 | [0x636f487aF3862fAb7f6B27654e854b526B4445da](https://etherscan.io/address/0x636f487aF3862fAb7f6B27654e854b526B4445da) |
 | `AxiomV2Query` Prover 5 | [0x2E17d5Ae4CA5D010F21993bc9465E830237C36CC](https://etherscan.io/address/0x2E17d5Ae4CA5D010F21993bc9465E830237C36CC) |
+
+## Base Mainnet
+
+Axiom V2 is deployed on Base mainnet at the addresses below. The contracts make reference to the governance multisig addresses listed below.
+
+### Contract Addresses
+
+| Contract                        | Address (Base mainnet)                                                                                            |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `AxiomV2Core` (proxy)           | [](https://etherscan.io/address/) |
+| `AxiomV2Core` (impl)            | [](https://etherscan.io/address/) |
+| `AxiomV2CoreVerifier`           | [](https://etherscan.io/address/) |
+| `AxiomV2CoreHistoricalVerifier` | [](https://etherscan.io/address/) |
+| `AxiomV2Query` (proxy)          | [](https://etherscan.io/address/) |
+| `AxiomV2Query` (impl)           | [](https://etherscan.io/address/) |
+| `AxiomV2QueryVerifier`          | [](https://etherscan.io/address/) |
+| `AxiomV2HeaderVerifier`         | [](https://etherscan.io/address/) |
+
+### Governance Addresses
+
+The following addresses control [upgrades and pauses](/protocol/protocol-design/guardrails.md) for the Base mainnet contracts above.
+
+| Contract                | Address (Base mainnet)                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Axiom Timelock          | [](https://etherscan.io/address/) |
+| Axiom Timelock Multisig | [](https://etherscan.io/address/) |
+| Axiom Guardian Multisig | [](https://etherscan.io/address/) |
+| Axiom Unfreeze Multisig | [](https://etherscan.io/address/) |
+
+The Axiom Timelock Multisig has the `PROPOSER_ROLE` and `EXECUTOR_ROLE` for the `AxiomTimelock` timelock controller. The Axiom Guardian Multisig has the `GUARDIAN_ROLE`, and the Axiom Unfreeze Multisig has the `UNFREEZE_ROLE`.
+
+### Prover Addresses
+
+The following addresses have the `PROVER_ROLE` for `AxiomV2Core` and `AxiomV2Query` on Base mainnet.
+
+| Role                    | Address (Base mainnet)                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `AxiomV2Core` Prover    | [](https://etherscan.io/address/) |
+| `AxiomV2Query` Prover 1 | [](https://etherscan.io/address/) |
+| `AxiomV2Query` Prover 2 | [](https://etherscan.io/address/) |
+| `AxiomV2Query` Prover 3 | [](https://etherscan.io/address/) |
+| `AxiomV2Query` Prover 4 | [](https://etherscan.io/address/) |
+| `AxiomV2Query` Prover 5 | [](https://etherscan.io/address/) |
 
 ## Sepolia Testnet
 
