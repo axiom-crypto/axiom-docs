@@ -27,7 +27,7 @@ export class Axiom<T> {
     callback: AxiomV2CallbackInput;
     privateKey?: string;
     capacity?: AxiomV2CircuitCapacity;
-    options?: AxiomV2ClientOptions;
+    options?: AxiomV2QueryOptions;
   })
 }
 ```
@@ -114,7 +114,8 @@ The return type of `prove` is the `AxiomV2SendQueryArgs` interface:
     value: bigint,
     args: Array<any>,
     queryId: string,
-    calldata: string
+    mock: boolean,
+    calldata: string,
 }
 ```
 
@@ -126,6 +127,7 @@ The return type of `prove` is the `AxiomV2SendQueryArgs` interface:
   - `args = [sourceChainId, dataQueryHash, computeQuery, callback, salt, maxFeePerGas, callbackGasLimit, refundAddress, dataQuery]`
 - `queryId`: the unique identifier for this query, including user information such as caller and callback address.
   - For this to match the `queryId` calculated on-chain, the input `callerAddress` must match the actual transaction sender address
+- `mock`: boolean value of whether this is a mock query or not.
 - `calldata`: the hex string of the `args` encoded with `sendQuery` function selector. You can send a `sendQuery` transaction directly using this calldata.
 
 ### sendQuery
