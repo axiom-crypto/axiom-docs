@@ -6,6 +6,20 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.0.9
+
+### @axiom-crypto/client
+
+- Base Mainnet support
+- Added `--force` option to `npx circuit compile` to allow developers to force compilation even when a `.compiled.json` file already exists
+- QueryBuilder moved into the client/circuit repos in order to flatten dependency structure
+
+### @axiom-crypto/react
+
+- **Interface change:** `setOptions` is removed from `useAxiomCircuit()` and `setParams` now takes in an additional optional `options` field
+- Base Mainnet support
+- Fixes bug with setting the `refundee` in options
+
 ## v2.0.8
 
 ### @axiom-crypto/client
