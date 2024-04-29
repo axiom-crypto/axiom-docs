@@ -6,6 +6,11 @@ sidebar_label: axiom-std
 
 # axiom-std
 
+## v0.1.8 (729547c)
+
+- Add support for Base mainnet
+- Bump `@axiom-crypto/client` version to v2.0.9
+
 ## v0.1.7 (f9f71f2)
 
 - Add support for Base Sepolia
