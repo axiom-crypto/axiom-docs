@@ -42,7 +42,7 @@ The ZK circuits being verified are not universal aggregation circuits, so no add
 
 ### `AxiomV2Query` Verifier Contract
 
-To verify the generation of the `AxiomV2QueryVerifier.sol` code, you can follow the instructions [here](https://github.com/axiom-crypto/axiom-eth/blob/axiom-query-v2.0.14/axiom-query/KEYGEN.md).
+To verify the generation of the `AxiomV2QueryVerifier.sol` code, you can follow the instructions [here](https://github.com/axiom-crypto/axiom-eth/blob/v2.0.17/axiom-query/KEYGEN.md).
 
 #### Supported `aggregateVkeyHash`es
 
@@ -80,7 +80,7 @@ You can verify these are the initialized `aggregateVkeyHash`es by inspecting the
 </TabItem>
 </Tabs>
 
-You can verify that each `aggregateVkeyHash` listed corresponds to the aggregation tree of ZK circuits described by the corresponding intent file by running the commands described in the [`axiom-eth` repository](https://github.com/axiom-crypto/axiom-eth/blob/axiom-query-v2.0.14/axiom-query/KEYGEN.md).
+You can verify that each `aggregateVkeyHash` listed corresponds to the aggregation tree of ZK circuits described by the corresponding intent file by running the commands described in the [`axiom-eth` repository](https://github.com/axiom-crypto/axiom-eth/blob/v2.0.17/axiom-query/KEYGEN.md).
 
 ## Checking Verifiers are not Metamorphic
 
