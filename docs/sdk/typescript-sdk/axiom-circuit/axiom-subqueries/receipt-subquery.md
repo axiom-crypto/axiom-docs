@@ -15,6 +15,7 @@ Receipt Subqueries provide data about a completed transaction and any logs/event
 The number of receipt subqueries allowed in a single client circuit depends on the size of the [transaction](./transaction-subquery) and receipt subqueries in the circuit.
 
 - Receipt subqueries are not supported for transactions with more than `400` logs or for transactions with any log containing more than `2048` bytes in the data field.
+- On Base, receipt subqueries are not supported for deposit or withdraw transactions.
 - If the receipt subquery is for a transaction with more than `80` logs, no log can have greater than `1024` bytes in the data field.
 - If your circuit has any of:
 

@@ -45,6 +45,23 @@ The parameters set by the user for each query are:
 
 If either of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas` and `callbackGasLimit` by calling the `increaseQueryGas` function.
 </TabItem>
+<TabItem value="Base" label="Base">
+
+- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
+- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
+
+The parameters set by the user for each query are:
+
+- `maxFeePerGas`: The max fee per gas that the prover should use in the fulfill query transaction.
+- `callbackGasLimit`: The gas limit allocated for use in the callback.
+- `overrideAxiomQueryFee`: Computed so that
+
+```
+maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataGasFee + axiomQueryFee
+```
+
+where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy. If any of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas`, `callbackGasLimit`, and `overrideAxiomQueryFee` by calling the `increaseQueryGas` function.
+</TabItem>
 <TabItem value="Sepolia" label="Sepolia">
 
 - `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
@@ -83,7 +100,7 @@ portion of the `maxQueryPri` not used in gas or the `axiomQueryFee` back to the 
 
 _We can support much larger queries on a partnership basis. If you are interested in larger queries, fill out the Axiom [partner form](https://airtable.com/shrdqI16f6EZBNkMA) to explore an integration._
 
-For the Axiom V2 mainnet release, an Axiom query has the following limits:
+For Axiom V2 on mainnet and Base, an Axiom query has the following limits:
 
 - The `axiomResults: bytes32[]` sent in the callback can have length at most **`128`**.
 - There can be at most **`128`** total subqueries in the query.
@@ -108,6 +125,9 @@ The `deadlineBlockNumber` is set to `queryDeadlineInterval` blocks after query s
 <Tabs groupId="chains">
 <TabItem value="Mainnet" label="Mainnet">
 `7200` blocks (approximately 1 day)
+</TabItem>
+<TabItem value="Base" label="Base">
+`43200` blocks (approximately 1 day)
 </TabItem>
 <TabItem value="Sepolia" label="Sepolia">
 `7200` blocks (approximately 1 day)

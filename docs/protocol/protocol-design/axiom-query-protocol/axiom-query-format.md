@@ -6,7 +6,7 @@ sidebar_label: Axiom Query Format
 
 # Axiom Query Format
 
-Axiom V2 queries allow users to compute over historic data on Ethereum. These queries consist of the following three pieces:
+Axiom V2 queries allow users to compute over historic data on Ethereum and Ethereum-equivalent chains. These queries consist of the following three pieces:
 
 - **Data query:** ZK authenticated access to historic block headers, accounts, storage slots, transactions, receipts, and Solidity mapping values from the history of Ethereum.
 - **Compute query:** ZK-proven computation over the data authenticated in the data query.
