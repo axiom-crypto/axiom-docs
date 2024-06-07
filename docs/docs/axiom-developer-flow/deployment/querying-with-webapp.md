@@ -68,7 +68,7 @@ You can then follow the on-screen directions to build and send a query. The foll
 
 The `app/src/app/provider.tsx` file wraps all of the required providers for for Wagmi and also our `AxiomCircuitProvider` that's exported from `@axiom-crypto/react`. This `Providers` component is used to prevent hydration errors when `AxiomCircuitProvider` is mounting.
 
-```typescript title="app/src/app/provider.tsx"
+```typescript title="app/src/app/providers.tsx"
 "use client";
 
 import { WagmiProvider } from 'wagmi';
@@ -127,7 +127,7 @@ export default function RootLayout({
 
 ## Using the Axiom Circuit Hook
 
-You can pass data into the `useAxiomCircuit` hook and then call `build()` on it to build the Axiom query. 
+You can pass data into the `useAxiomCircuit` hook and then call `build()` on it to build the Axiom query.
 
 ```typescript title="app/src/app/components/BuildQuery.tsx"
 "use client"
@@ -246,44 +246,32 @@ export const WebappSettings = {
 }
 ```
 
-```typescript title="app/src/app/providers.tsx"
-"use client";
+```typescript
+<AxiomCrosschainCircuitProvider
+  source={{
+    chainId: "11155111",
+    rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_11155111,
+  }}
+  target={{
+    chainId: "84532",
+    rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_84532,
+  }}
+  bridgeType={BridgeType.BlockhashOracle}
+  compiledCircuit={WebappSettings.compiledCircuit}
+>
+  {mounted && children}
+</AxiomCrosschainCircuitProvider>
+```
 
-import { WagmiProvider } from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { wagmiConfig } from '@/lib/wagmiConfig';
-import { useEffect, useState } from "react";
-import { AxiomCrosschainCircuitProvider } from "@axiom-crypto/react";
-import { WebappSettings } from "@/lib/webappSettings";
-import { BridgeType } from "@axiom-crypto/client/types";
+The `useAxiomCircuit` hook becomes the `useAxiomCrosschainCircuit`:
 
-const queryClient = new QueryClient()
-
-export default function Providers({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  return (
-    <WagmiProvider config={wagmiConfig}>
-      <QueryClientProvider client={queryClient}>
-        <AxiomCrosschainCircuitProvider
-          source={{
-            chainId: "11155111",
-            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_11155111!,
-          }}
-          target={{
-            chainId: "84532",
-            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_84532!,
-          }}
-          bridgeType={BridgeType.BlockhashOracle}
-          compiledCircuit={WebappSettings.compiledCircuit}
-        >
-          {mounted && children}
-        </AxiomCrosschainCircuitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
-  )
-}
+```typescript
+const {
+  build,
+  builtQuery,
+  setParams,
+  areParamsSet,
+} = useAxiomCrosschainCircuit<typeof WebappSettings.inputs>();
 ```
 
 Everything else will stay the same as the standard query setup described above.
