@@ -36,7 +36,7 @@ export default function Layout({
   return (
     <AxiomCircuitProvider
       compiledCircuit={compiledCircuit}
-      provider={process.env.NEXT_PUBLIC_ALCHEMY_URI_SEPOLIA as string}
+      rpcUrl={process.env.NEXT_PUBLIC_RPC_URL_11155111 as string}
       chainId={"11155111"}
     >
       {mounted && children}

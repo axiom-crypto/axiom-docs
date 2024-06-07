@@ -16,14 +16,14 @@ Once you've generated the `Script` scaffold of the Axiom app, you can find the s
 
 ```typescript
 const axiom = new Axiom({
-    circuit: circuit,
-    compiledCircuit: compiledCircuit,
-    chainId: "11155111",  // Sepolia
-    rpcUrl: process.env.RPC_URL_11155111 as string,
-    privateKey: process.env.PRIVATE_KEY_11155111 as string,
-    callback: {
-        target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
-    },
+  circuit: circuit,
+  compiledCircuit: compiledCircuit,
+  chainId: "11155111",  // Sepolia
+  rpcUrl: process.env.RPC_URL_11155111 as string,
+  privateKey: process.env.PRIVATE_KEY_11155111 as string,
+  callback: {
+    target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
+  },
 });
 await axiom.init();
 ```
@@ -75,18 +75,18 @@ const ipfsClient = new PinataIpfsClient(process.env.PINATA_JWT);
 // const ipfsClient = new QuicknodeIpfsClient(process.env.QUICKNODE_API_KEY, process.env.QUICKNODE_GATEWAY);
 
 const axiom = new Axiom({
-    circuit: circuit,
-    compiledCircuit: compiledCircuit,
-    chainId: "11155111",  // Sepolia
-    rpcUrl: process.env.RPC_URL_11155111 as string,
-    privateKey: process.env.PRIVATE_KEY_11155111 as string,
-    callback: {
-        target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
-    },
-    // Additional `ipfsClient` field
-    options: {
-        ipfsClient: ipfsClient,
-    },
+  circuit: circuit,
+  compiledCircuit: compiledCircuit,
+  chainId: "11155111",  // Sepolia
+  rpcUrl: process.env.RPC_URL_11155111 as string,
+  privateKey: process.env.PRIVATE_KEY_11155111 as string,
+  callback: {
+    target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
+  },
+  // Additional `ipfsClient` field
+  options: {
+    ipfsClient: ipfsClient,
+  },
 });
 await axiom.init();
 await axiom.prove(inputs);
@@ -99,19 +99,51 @@ const receipt = await axiom.sendQueryWithIpfs();
 
 You can view the status of your query by going to [Axiom Explorer](https://explorer.axiom.xyz). You can find your specific query by checking your query's `queryId` via `args.queryId`.
 
-## Using Different Chains
+## Using different chains
 
 We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `chainId` and `rpcUrl` fields to the appropriate values for the chain you want to use. Ensure that the `privateKey` that you pass in is also funded on the chain that you are using and that the callback target is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
 
 ```typescript
 const axiom = new Axiom({
-    circuit: circuit,
-    compiledCircuit: compiledCircuit,
-    chainId: "84532",  // Base Sepolia
-    rpcUrl: process.env.RPC_URL_84532 as string,
-    privateKey: process.env.PRIVATE_KEY_84532 as string,
-    callback: {
-        target: "0x81908149E769236F1c9e62b468d07899CB95890F",
-    },
+  circuit: circuit,
+  compiledCircuit: compiledCircuit,
+  chainId: "84532",  // Base Sepolia
+  rpcUrl: process.env.RPC_URL_84532 as string,
+  privateKey: process.env.PRIVATE_KEY_84532 as string,
+  callback: {
+    target: "0x81908149E769236F1c9e62b468d07899CB95890F",
+  },
 });
+```
+
+## Crosschain queries
+
+Crosschain queries follow the same flow as a standard query but with additional setup parameters, and the use of the `AxiomCrosschain` class instead of the `Axiom` class.
+
+```typescript
+const SOURCE_CHAIN_ID = "11155111";
+const TARGET_CHAIN_ID = "84532";
+const SOURCE_RPC_URL = process.env[`RPC_URL_${SOURCE_CHAIN_ID}`];
+const TARGET_RPC_URL = process.env[`RPC_URL_${TARGET_CHAIN_ID}`];
+
+const axiom = new AxiomCrosschain({
+  circuit,
+  compiledCircuit,
+  source: {
+    chainId: SOURCE_CHAIN_ID,
+    rpcUrl: SOURCE_RPC_URL,
+  },
+  target: {
+    chainId: TARGET_CHAIN_ID,
+    rpcUrl: TARGET_RPC_URL,
+    privateKey: process.env[`PRIVATE_KEY_${TARGET_CHAIN_ID}`] as string,
+  },
+  bridgeType: BridgeType.BlockhashOracle,
+  callback: {
+    target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
+  },
+});
+await axiom.init();
+await axiom.prove(inputs);
+const receipt = await axiom.sendQuery();
 ```
