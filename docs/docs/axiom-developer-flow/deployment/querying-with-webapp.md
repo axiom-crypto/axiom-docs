@@ -43,9 +43,9 @@ npm run dev
 
 ## Editing Your Webapp's Settings
 
-All Axiom-related settings are stored in `app/src/lib/webappSettings.ts`. You can edit this file to change things like your circuit, default inputs, callback info, etc.
+All Axiom-related settings are stored in `app/src/app/lib/webappSettings.ts`. You can edit this file to change things like your circuit, default inputs, callback info, etc.
 
-```typescript title="app/src/lib/webappSettings.ts"
+```typescript title="app/src/app/lib/webappSettings.ts"
 import compiledCircuit from "../../axiom/data/compiled.json";
 import inputs from "../../axiom/data/inputs.json";
 import AverageBalanceAbi from "./abi/AverageBalance.json";
@@ -62,38 +62,44 @@ export const WebappSettings = {
 
 You can then follow the on-screen directions to build and send a query. The following sections describe different parts of the Next.js webapp, so you can modify them as necessary.
 
-## The `AxiomProvider` wrapper for `AxiomCircuitProvider`
+## The `Providers` wrapper for `AxiomCircuitProvider`
 
-The `app/src/app/axiomProvider.tsx` file contains an `AxiomProvider` wrapper for the `AxiomCircuitProvider` that's exported from `@axiom-crypto/react`. This `AxiomProvider` component is used to prevent hydration errors when `AxiomCircuitProvider` is mounting.
+The `app/src/app/provider.tsx` file wraps all of the required providers for for Wagmi and also our `AxiomCircuitProvider` that's exported from `@axiom-crypto/react`. This `Providers` component is used to prevent hydration errors when `AxiomCircuitProvider` is mounting.
 
-```typescript title="app/src/app/axiomProvider.tsx"
+```typescript title="app/src/app/provider.tsx"
 "use client";
 
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { wagmiConfig } from '@/lib/wagmiConfig';
 import { useEffect, useState } from "react";
 import { AxiomCircuitProvider } from "@axiom-crypto/react";
 import { WebappSettings } from "@/lib/webappSettings";
+import { BridgeType } from "@axiom-crypto/client/types";
 
-export default function AxiomProvider({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+const queryClient = new QueryClient()
+
+export default function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
-    <AxiomCircuitProvider
-      compiledCircuit={WebappSettings.compiledCircuit}
-      rpcUrl={WebappSettings.rpcUrl}
-      chainId={WebappSettings.chainId}
-    >
-      {mounted && children}
-    </AxiomCircuitProvider>
-  );
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <AxiomCircuitProvider
+          compiledCircuit={WebappSettings.compiledCircuit}
+          rpcUrl={WebappSettings.rpcUrl}
+          chainId={WebappSettings.chainId}
+        >
+          {mounted && children}
+        </AxiomCircuitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
 }
 ```
 
-`<AxiomProvider>` is then inserted into `layout.tsx`, around `{children}`.
+`<Providers>` is then inserted into `layout.tsx`, around `{children}`.
 
 ```typescript title="app/src/app/layout.tsx"
 ...
@@ -106,9 +112,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         ...
-          <AxiomProvider>
+          <Providers>
             {children}
-          </AxiomProvider>
+          </Providers>
         ...
       </body>
     </html>
@@ -200,11 +206,11 @@ export default function SendQueryComponent() {
 
 Once the query is submitted on-chain, you can handle the additional logic as you see fit.
 
-## Using Different Chains
+## Using different chains
 
 We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `WebappSettings` object to the appropriate values for the chain you'd like to use. Ensure that the `callbackTarget` is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
 
-```typescript title="app/src/lib/webappSettings.ts"
+```typescript title="app/src/app/lib/webappSettings.ts"
 ...
 export const WebappSettings = {
   compiledCircuit,
@@ -216,6 +222,70 @@ export const WebappSettings = {
 }
 ```
 
+## Crosschain queries
+
+Crosschain queries can be built and sent in a similar fashion to standard queries with a few changes.
+
+```typescript title="app/src/app/lib/webappSettings.ts"
+export const PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID as string;
+export const SOURCE_CHAIN_ID = "11155111";
+export const TARGET_CHAIN_ID = "84532";
+
+export const WebappSettings = {
+  compiledCircuit,
+  inputs,
+  sourceProvider: getProviderClientSide(SOURCE_CHAIN_ID),
+  sourceChainId: SOURCE_CHAIN_ID,
+  targetProvider: getProviderClientSide(TARGET_CHAIN_ID),
+  targetChainId: TARGET_CHAIN_ID,
+  callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
+  callbackAbi: AverageBalanceAbi,
+  explorerBaseUrl: chainIdToExplorerBaseUrl(TARGET_CHAIN_ID),
+}
+```
+
+```typescript title="app/src/app/providers.tsx"
+"use client";
+
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { wagmiConfig } from '@/lib/wagmiConfig';
+import { useEffect, useState } from "react";
+import { AxiomCrosschainCircuitProvider } from "@axiom-crypto/react";
+import { WebappSettings } from "@/lib/webappSettings";
+import { BridgeType } from "@axiom-crypto/client/types";
+
+const queryClient = new QueryClient()
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  return (
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <AxiomCrosschainCircuitProvider
+          source={{
+            chainId: "11155111",
+            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_11155111!,
+          }}
+          target={{
+            chainId: "84532",
+            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_84532!,
+          }}
+          bridgeType={BridgeType.BlockhashOracle}
+          compiledCircuit={WebappSettings.compiledCircuit}
+        >
+          {mounted && children}
+        </AxiomCrosschainCircuitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
+}
+```
+
+Everything else will stay the same as the standard query setup described above.
+
 ## Additional Reference
 
-For full references on `AxiomCircuitProvider` and `useAxiomCircuit`, see the [SDK Reference](/sdk/react-sdk/axiom-react.md).
+For full references on `AxiomCircuitProvider`, `AxiomCrosschainCircuitProvider`, `useAxiomCircuit`, and `useAxiomCrosschainCircuit`, see the [SDK Reference](/sdk/react-sdk/axiom-react.md).
