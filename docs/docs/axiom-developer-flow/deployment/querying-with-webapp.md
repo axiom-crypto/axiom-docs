@@ -8,6 +8,8 @@ sidebar_label: Querying in Your Webapp
 
 This tutorial gives an explanation of what's happening as we run . It assumes that you've already run `npx create-axiom-client` and selected the Next.js option to build a Next.js webapp scaffold.
 
+The reference implementation is in this repository: [https://github.com/axiom-crypto/axiom-scaffold-nextjs/](https://github.com/axiom-crypto/axiom-scaffold-nextjs/)
+
 ## Setup
 
 You will need to duplicate `.env.local.example` and rename as `.env.local`, and then add your environment variables to `.env.local`.
