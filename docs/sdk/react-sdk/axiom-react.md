@@ -18,32 +18,61 @@ npm install @axiom-crypto/react
 
 In order to use this in your Next.js 14 app, you'll need to wrap your layout with `AxiomCircuitProvider` and ensure that it's only mounted once:
 
-```typescript title="src/layout.tsx"
+```typescript title="app/src/app/providers.tsx"
 "use client";
 
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { wagmiConfig } from '@/lib/wagmiConfig';
 import { useEffect, useState } from "react";
 import { AxiomCircuitProvider } from "@axiom-crypto/react";
-import compiledCircuit from "../../axiom/data/compiled.json"; // REPLACE w/ path to build artifacts from circuit compilation
+import { WebappSettings } from "@/lib/webappSettings";
+import { BridgeType } from "@axiom-crypto/client/types";
 
-export default function Layout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+const queryClient = new QueryClient()
+
+export default function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
-    <AxiomCircuitProvider
-      compiledCircuit={compiledCircuit}
-      rpcUrl={process.env.NEXT_PUBLIC_RPC_URL_11155111 as string}
-      chainId={"11155111"}
-    >
-      {mounted && children}
-    </AxiomCircuitProvider>
-  );
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <AxiomCircuitProvider
+          compiledCircuit={WebappSettings.compiledCircuit}
+          rpcUrl={WebappSettings.rpcUrl}
+          chainId={WebappSettings.chainId}
+        >
+          {mounted && children}
+        </AxiomCircuitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
 }
+```
 
+`<Providers>` is then inserted into `layout.tsx`, around `{children}`.
+
+```typescript title="app/src/app/layout.tsx"
+...
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        ...
+          <Providers>
+            {children}
+          </Providers>
+        ...
+      </body>
+    </html>
+  )
+}
+...
 ```
 
 ## useAxiomCircuit
@@ -105,3 +134,60 @@ The full `builtQuery` variable that contains all inputs required for calling `se
 ### `reset`
 
 Function to reset the `inputs`, `callbackAddress`, `callbackExtraData`, and `refundee` variables.
+
+## AxiomCrosschainCircuitProvider
+
+Crosschain queries can be built and sent in a similar fashion to standard queries with a few changes.
+
+```typescript title="app/src/app/providers.tsx"
+"use client";
+
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { wagmiConfig } from '@/lib/wagmiConfig';
+import { useEffect, useState } from "react";
+import { AxiomCrosschainCircuitProvider } from "@axiom-crypto/react";
+import { WebappSettings } from "@/lib/webappSettings";
+import { BridgeType } from "@axiom-crypto/client/types";
+
+const queryClient = new QueryClient()
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  return (
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <AxiomCrosschainCircuitProvider
+          source={{
+            chainId: "11155111",
+            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_11155111,
+          }}
+          target={{
+            chainId: "84532",
+            rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_84532,
+          }}
+          bridgeType={BridgeType.BlockhashOracle}
+          compiledCircuit={WebappSettings.compiledCircuit}
+        >
+          {mounted && children}
+        </AxiomCrosschainCircuitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
+}
+```
+
+## useAxiomCrosschainCircuit
+
+Then you can use the `useAxiomCircuit` hook to get built queries inside your application:
+
+```typescript
+const {
+  build,
+  builtQuery,
+  setParams,
+  areParamsSet,
+} = useAxiomCrosschainCircuit<typeof WebappSettings.inputs>();
+```
