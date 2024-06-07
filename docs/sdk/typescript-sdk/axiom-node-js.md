@@ -23,7 +23,7 @@ export class Axiom<T> {
     circuit: (inputs: T) => Promise<void>;
     compiledCircuit: AxiomV2CompiledCircuit;
     chainId: string;
-    provider: string;
+    rpcUrl: string;
     callback: AxiomV2CallbackInput;
     privateKey?: string;
     capacity?: AxiomV2CircuitCapacity;
@@ -37,7 +37,7 @@ This class is generic over a type `T`, which is the input type of the circuit. S
 - `circuit`: this is the client circuit code itself, which you write separately. The client circuit code is specified as an async function `(inputs: T) => Promise<void>`.
 - `compiledCircuit`: the JSON build output from the CLI `compile` function
 - `chainId`: the chain ID the on-chain data is gotten from. Only used for computation of `sendQueryArgs`. Does not affect circuit compilation or runs.
-- `provider`: the JSON-RPC URL provider, this is used to make RPC calls to get on-chain data values (that are _not_ ZK-verified)
+- `rpc-url`: the JSON-RPC URL provider, this is used to make RPC calls to get on-chain data values (that are _not_ ZK-verified)
 - `callback`:
   - `target`: the target contract address with the callback function
   - `extraData`: optional parameter to specify hex string of `bytes` for any extra data to pass to the callback
@@ -83,9 +83,9 @@ Set options used to build the query.
 
 ```typescript
 setCallback(callback: {
-    target?: string;
-    extraData?: string;
-  })
+  target?: string;
+  extraData?: string;
+})
 ```
 
 Set configuration options for the callback contract.

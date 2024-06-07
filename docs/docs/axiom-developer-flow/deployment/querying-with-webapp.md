@@ -53,7 +53,7 @@ import AverageBalanceAbi from "./abi/AverageBalance.json";
 export const WebappSettings = {
   compiledCircuit,
   inputs,
-  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_SEPOLIA as string,
+  rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_11155111 as string,
   chainId: "11155111",
   callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
   callbackAbi: AverageBalanceAbi,
@@ -84,7 +84,7 @@ export default function AxiomProvider({
   return (
     <AxiomCircuitProvider
       compiledCircuit={WebappSettings.compiledCircuit}
-      provider={WebappSettings.provider}
+      rpcUrl={WebappSettings.rpcUrl}
       chainId={WebappSettings.chainId}
     >
       {mounted && children}
@@ -209,7 +209,7 @@ We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply
 export const WebappSettings = {
   compiledCircuit,
   inputs,
-  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_BASE_SEPOLIA as string,
+  rpcUrl: process.env.NEXT_PUBLIC_RPC_URL_84532 as string,
   chainId: "84532",
   callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
   callbackAbi: AverageBalanceAbi,
