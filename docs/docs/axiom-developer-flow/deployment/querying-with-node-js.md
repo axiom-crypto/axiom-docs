@@ -19,8 +19,8 @@ const axiom = new Axiom({
     circuit: circuit,
     compiledCircuit: compiledCircuit,
     chainId: "11155111",  // Sepolia
-    provider: process.env.PROVIDER_URI_SEPOLIA as string,
-    privateKey: process.env.PRIVATE_KEY_SEPOLIA as string,
+    rpcUrl: process.env.RPC_URL_11155111 as string,
+    privateKey: process.env.PRIVATE_KEY_11155111 as string,
     callback: {
         target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
     },
@@ -33,7 +33,7 @@ The Axiom configuration parameters are explained here:
 - `circuit`: the exported circuit function from your circuit file (here, it's `app/axiom/average.circuit.ts`)
 - `compiledCircuit`: the compiled circuit json file from the `npx axiom circuit compile` command
 - `chainId`: the chain ID that the circuit will read its on-chain data from
-- `provider`: a node provider (such as Quicknode, Alchemy, Infura); should be hidden and specified in the `.env` file
+- `rpcUrl`: a JSON-RPC node provider (such as Quicknode, Alchemy, Infura); should be hidden and specified in the `.env` file
 - `privateKey`: your test account's private key; should be hidden and specified in the `.env` file
 - `callback`: callback data
   - `target`: address of the smart contract that will receive the callback (your contract)
@@ -78,8 +78,8 @@ const axiom = new Axiom({
     circuit: circuit,
     compiledCircuit: compiledCircuit,
     chainId: "11155111",  // Sepolia
-    provider: process.env.PROVIDER_URI_SEPOLIA as string,
-    privateKey: process.env.PRIVATE_KEY_SEPOLIA as string,
+    rpcUrl: process.env.RPC_URL_11155111 as string,
+    privateKey: process.env.PRIVATE_KEY_11155111 as string,
     callback: {
         target: "0x4A4e2D8f3fBb3525aD61db7Fc843c9bf097c362e",
     },
@@ -101,15 +101,15 @@ You can view the status of your query by going to [Axiom Explorer](https://explo
 
 ## Using Different Chains
 
-We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `chainId` and `provider` fields to the appropriate values for the chain you want to use. Ensure that the `privateKey` that you pass in is also funded on the chain that you are using and that the callback target is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
+We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `chainId` and `rpcUrl` fields to the appropriate values for the chain you want to use. Ensure that the `privateKey` that you pass in is also funded on the chain that you are using and that the callback target is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
 
 ```typescript
 const axiom = new Axiom({
     circuit: circuit,
     compiledCircuit: compiledCircuit,
     chainId: "84532",  // Base Sepolia
-    provider: process.env.PROVIDER_URI_BASE_SEPOLIA as string,
-    privateKey: process.env.PRIVATE_KEY_BASE_SEPOLIA as string,
+    rpcUrl: process.env.RPC_URL_84532 as string,
+    privateKey: process.env.PRIVATE_KEY_84532 as string,
     callback: {
         target: "0x81908149E769236F1c9e62b468d07899CB95890F",
     },
