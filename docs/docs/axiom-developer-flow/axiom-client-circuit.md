@@ -51,9 +51,9 @@ export const defaultInputs = {
   blockNumber: 5100000,
   address: "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
   slot: 0,
-}
+};
 
-export const circuitFunction = async (inputs: CircuitInputs) => {
+export const circuit = async (inputs: CircuitInputs) => {
   // define your application logic using the Axiom SDK
 
   // ZK primitives are available via the Axiom SDK
@@ -131,7 +131,7 @@ Allowed primitive types can be `number | string | bigint`. The JSON will be auto
 To compile, run
 
 ```bash
-npx axiom circuit compile app/axiom/example.circuit.ts --function circuitFunction --rpc-url $RPC_URL_11155111
+npx axiom circuit compile app/axiom/example.circuit.ts --rpc-url $RPC_URL_11155111
 ```
 
 where `$RPC_URL_11155111` should be set to a https JSON-RPC provider URL. Upon successful compilation, a JSON of build artifacts will be output to `data/compiled.json`. In particular, the JSON contains the **`querySchema`** which is a unique identifier of your circuit, independent of the inputs. You will need this to validate Axiom callbacks in your client contract. For more about how the `querySchema` is constructed from your Axiom circuit, read about it in [Axiom Query Format](/protocol/protocol-design/axiom-query-protocol/axiom-query-format#query-schema).
