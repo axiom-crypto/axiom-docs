@@ -31,7 +31,7 @@ Once the project scaffold has completed, you will need to copy and rename the `a
 - `.env` - for Foundry tests
 - `app/.env.local` - for the Next.js app
 
-You will need a node provider url (such as from [Alchemy](https://www.alchemy.com), [Quicknode](https://www.quicknode.com/), [Infura](https://www.infura.io/), etc) as well as a [Walletconnect Project ID](https://cloud.walletconnect.com/sign-in). The Walletconnect Project ID is only needed for the Next.js webapp and can be left blank if you are only running the Foundry tests.
+You will need a JSON-RPC node provider url (such as from [Alchemy](https://www.alchemy.com), [Quicknode](https://www.quicknode.com/), [Infura](https://www.infura.io/), etc) as well as a [Walletconnect Project ID](https://cloud.walletconnect.com/sign-in). The Walletconnect Project ID is only needed for the Next.js webapp and can be left blank if you are only running the Foundry tests.
 
 ## Axiom Circuit
 
@@ -44,7 +44,7 @@ The circuit is where you define the on-chain data you'd like to access through A
 To use your circuit in our system, you need to compile every time the circuit is modified. The resulting compilation artifacts will be used in your smart contract as well as the Next.js webapp. You can run the following command to compile the circuit.
 
 ```bash
-npx axiom circuit compile app/axiom/average.circuit.ts --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit compile app/axiom/average.circuit.ts --rpc-url $RPC_URL_11155111
 ```
 
 The CLI looks for inputs in a default path of `app/axiom/data/inputs.json`, which can be overridden with additional arguments. For more information, see [Axiom CLI](/sdk/typescript-sdk/axiom-cli).

@@ -51,9 +51,9 @@ export const defaultInputs = {
   blockNumber: 5100000,
   address: "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
   slot: 0,
-}
+};
 
-export const circuitFunction = async (inputs: CircuitInputs) => {
+export const circuit = async (inputs: CircuitInputs) => {
   // define your application logic using the Axiom SDK
 
   // ZK primitives are available via the Axiom SDK
@@ -131,10 +131,10 @@ Allowed primitive types can be `number | string | bigint`. The JSON will be auto
 To compile, run
 
 ```bash
-npx axiom circuit compile app/axiom/example.circuit.ts --function circuitFunction --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit compile app/axiom/example.circuit.ts --rpc-url $RPC_URL_11155111
 ```
 
-where `$PROVIDER_URI_SEPOLIA` should be set to a JSON-RPC provider URL. Upon successful compilation, a JSON of build artifacts will be output to `data/compiled.json`. In particular, the JSON contains the **`querySchema`** which is a unique identifier of your circuit, independent of the inputs. You will need this to validate Axiom callbacks in your client contract. For more about how the `querySchema` is constructed from your Axiom circuit, read about it in [Axiom Query Format](/protocol/protocol-design/axiom-query-protocol/axiom-query-format#query-schema).
+where `$RPC_URL_11155111` should be set to a https JSON-RPC provider URL. Upon successful compilation, a JSON of build artifacts will be output to `data/compiled.json`. In particular, the JSON contains the **`querySchema`** which is a unique identifier of your circuit, independent of the inputs. You will need this to validate Axiom callbacks in your client contract. For more about how the `querySchema` is constructed from your Axiom circuit, read about it in [Axiom Query Format](/protocol/protocol-design/axiom-query-protocol/axiom-query-format#query-schema).
 
 To see all `axiom circuit compile` options, run `npx axiom circuit compile --help` or see the [Axiom CLI docs](/sdk/typescript-sdk/axiom-cli.md#compile "mention").
 
@@ -143,7 +143,7 @@ To see all `axiom circuit compile` options, run `npx axiom circuit compile --hel
 Now that your circuit is compiled, you can generate proofs on different inputs. For any input in `input.json`, you can run with
 
 ```bash
-npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/input.json --provider $PROVIDER_URI_SEPOLIA
+npx axiom circuit prove app/axiom/data/compiled.json app/axiom/data/input.json --rpc-url $RPC_URL_11155111
 ```
 
 This will output a JSON of your proven data to `app/data/proven.json`. In particular, it has a field **`computeResults`**, which consists of a `bytes32[]` array of the values you specified to add to the callback. If you change a field in your `inputs.json`, rerunning should change the `computeResults`.

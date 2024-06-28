@@ -23,28 +23,33 @@ npx axiom circuit <command>
 Command used to compile your circuit. This only needs to be done once on any given piece of circuit code. It does not depend on the circuit inputs, but a default input must be provided.
 
 ```bash
-Usage: axiom circuit compile [options] <circuitPath>
+Usage: axiom circuit compile [options] <*.circuit.ts file>
 
 compile an Axiom circuit
 
 Arguments:
-  circuitPath                path to the typescript circuit file
+  *.circuit.ts file                 path to the typescript circuit file
 
 Options:
-  -st, --stats               print stats
-  -m, --mock                 generate a mock vkey and query schema
-  -p, --provider [provider]  JSON-RPC provider (https)
-  -o, --outputs [outputs]    outputs json file
-  -f, --function [function]  function name in typescript circuit
-  --cache [cache]            cache output file
+  -st, --stats                      print stats
+  -m, --mock                        generate a mock vkey and query schema
+  -sr, --rpc-url <https url>      source chain JSON-RPC provider URL (https)
+  -d, --default-inputs <json file>  default inputs json file
+  -o, --outputs <outputs>           outputs json file
+  -f, --function <function>         function name in typescript circuit
+  -c, --cache <cache>               cache output file
+  --force                           force compilation even if output file exists
 ```
 
-- circuit path: the path to the Typescript file with your circuit code
-- provider: the JSON-RPC provider URL
-- inputs: the path to the default input JSON for the circuit
+- \*.circuit.ts file: the path to the Typescript file with your circuit code
+- stats: print circuit stats
+- mock: generates mock vkey and query schema
+- rpc-url: source chain JSON-RPC provider URL (https)
+- default-inputs: the path to the default input JSON for the circuit
 - outputs: output path for the compiled JSON
 - function: the name of your circuit function
-- stats: print circuit stats
+- cache: caches the compiled output file
+- force: forces compilation even if the output file already exists
 
 The output will be a JSON written to the output path corresponding to the interface
 
@@ -65,32 +70,31 @@ The `vk`, `inputSchema`, and `circuit` are base64 encoded strings that along wit
 Command to run your compiled circuit on a given input. This command must be run after circuit is compiled.
 
 ```bash
-Usage: axiom circuit prove [options] <compiledPath> <inputsFile>
+Usage: axiom circuit prove [options] <compiled json> <inputs json>
 
 prove an Axiom circuit
 
 Arguments:
-  compiledPath                         path to the compiled circuit json file
-  inputsFile                           path to the inputs json file
+  compiled json                     path to the compiled circuit json file
+  inputs json                       path to the inputs json file
 
 Options:
-  -s, --sourceChainId [sourceChainId]  source chain id
-  -m, --mock                           generate a mock compute proof
-  -st, --stats                         print stats
-  -p, --provider [provider]            JSON-RPC provider (https)
-  -o, --outputs [outputs]              outputs json file
-  --cache [cache]                      cache input file
+  -s, --source-chain-id <chain id>  source chain id
+  -sr, --rpc-url <https url>        source chain JSON-RPC provider URL (https)
+  -m, --mock                        generate a mock compute proof
+  -st, --stats                      print stats
+  -o, --outputs <outputs>           outputs json file
+  -c, --cache <cache>               cache input file
 ```
 
-- compiled path: the path to the compiled circuit json file
-- inputs file: json file containing inputs to the circuit
-- source chain id: the chain from which data is being read
-- compiled: the path to the JSON file output by `compile`
-- provider: the JSON-RPC provider URL
-- inputs: the path to the input JSON for the circuit, you can re-run the circuit on different inputs
-- outputs: the output path for the run outputs
-- function: the name of your circuit function
+- compiled json: the path to the JSON file output by `compile`
+- inputs json: the path to the input JSON for the circuit, you can re-run the circuit on different inputs
+- source-chain-id: the chain from which data is being read
+- rpc-url: the JSON-RPC provider URL
+- mock: generates a compute proof with dummy values in the same shape of a regular compute proof
 - stats: print circuit stats
+- outputs: the output path for the run outputs
+- cache: caches the input file
 
 The output will be a JSON written to the output path corresponding to the interface
 
@@ -117,34 +121,45 @@ Usage: axiom circuit query-params [options] <callback address>
 generate parameters to send a Query into Axiom
 
 Arguments:
-  callback address                             callback address
+  callback address                         target contract address for the callback
 
 Options:
-  -s, --sourceChainId [sourceChainId]          source chain id
-  -r, --refundAddress [refundAddress]          refundAddress
-  -e, --callbackExtraData [callbackExtraData]  callback extra data
-  --caller [caller]                            caller (defaults to refundAddress)
-  --maxFeePerGas [maxFeePerGas]                maxFeePerGas
-  --callbackGasLimit [callbackGasLimit]        callbackGasLimit
-  -m, --mock                                   generate a mock query
-  -p, --provider [provider]                    JSON-RPC provider (https)
-  -pv, --proven [proven]                       `axiom circuit prove` outputs path
-  -o, --outputs [outputs]                      query-params outputs path
-  -a, --args-map                               sendQuery argments output as mapping for use with Forge
+  -r, --refund-address <address>           address to refund excess payment
+  -s, --source-chain-id <chain id>         source chain id
+  -sr, --rpc-url <https url>               source chain JSON-RPC provider URL (https)
+  -e, --callback-extra-data <data>         callback extra data (hex)
+  --caller <caller>                        caller (defaults to refundAddress)
+  --max-fee-per-gas <maxFeePerGas>         max fee per gas in wei
+  --callback-gas-limit <callbackGasLimit>  callbackGasLimit
+  -m, --mock                               generate a mock query
+  -pv, --proven <proven>                   `axiom circuit prove` outputs path
+  -o, --outputs <outputs>                  query-params outputs path
+  -a, --args-map                           sendQuery argments output as mapping for use with Forge
+  -t, --target-chain-id <chain id>         (crosschain) target chain id
+  -tr, --target-rpc-url <https url>        (crosschain) target chain JSON-RPC provider URL (https)
+  -b, --bridge-id <bridge id>              (crosschain) bridge id
+  -br, --is-broadcaster                    (crosschain) Use crosschain broadcaster
+  -bo, --is-blockhash-oracle               (crosschain) Use crosschain blockhash oracle
 ```
 
 - callback address: the target contract address with the callback function
-- sourceChainId: the chain ID that the historical data in the client circuit was taken from
-- refundAddress: address to refund payment to
-- callbackExtraData: hex string of `bytes` for any extra data to pass to the callback
+- refund-address: address to refund payment to
+- source-chain-id: the chain ID that the historical data in the client circuit was taken from
+- rpc-url: the JSON-RPC provider URL for the source chain
+- callback-extra-data: hex string of `bytes` for any extra data to pass to the callback
 - caller: optional argument for the sender address, only used for `queryId` calculation
-- maxFeePerGas: optional argument to set maxFeePerGas, in wei, for Axiom to use on the fulfillment and callback transaction. Default is `25000000000 wei`
-- callbackGasLimit: optional argument to set the gas limit for the callback function. Default is `200000` gas.
+- max-fee-per-gas: optional argument to set maxFeePerGas, in wei, for Axiom to use on the fulfillment and callback transaction. Default is `25000000000 wei`
+- callback-gas-limit: optional argument to set the gas limit for the callback function. Default is `200000` gas.
 - mock: generate mock query data
-- provider: the JSON-RPC provider URL for the chain the transaction will be sent on
 - proven: the path to the JSON output by `prove`
-- output: the output path for `query-params`
+- outputs: the output path for `query-params`
 - args-map: arguments for sendQuery output as a mapping (as opposed to an array) for use with Forge
+- crosschain parameters:
+  - target-chain-id: the chain ID that the query will be submitted on (required for crosschain)
+  - target-rpc-url: the JSON-RPC provider URL for the target chain (required for crosschain)
+  - bridge-id: if using `--is-broadcaster`, this is required
+  - is-broadcaster: boolean for whether the AxiomV2Broadcaster is being used
+  - is-blockhash-oracle: boolean for whether the target chain blockhash oracle is being used
 
 The output will be a JSON written to the output path corresponding to the interface
 

@@ -6,6 +6,25 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.1.0
+
+### @axiom-crypto/client
+
+- Interface changes:
+  - `Axiom` input `provider` field is now called `rpcUrl`
+- CLI changes:
+  - `--provider` option renamed to `--rpc-url`
+  - CLI arguments changed from camelCase to kebab-case
+  - some CLI argument shortcuts modified to reflect new names
+- Adds crosschain support (Sepolia -> Base Sepolia)
+- Streamline and unify code paths
+
+### @axiom-crypto/react
+
+- Interface changes:
+  - `Axiom` input `provider` field is now called `rpcUrl`
+- Adds crosschain support (Sepolia -> Base Sepolia)
+
 ## v2.0.9
 
 ### @axiom-crypto/client
@@ -20,7 +39,7 @@ sidebar_label: Client SDK
 - Base Mainnet support
 - Fixes bug with setting the `refundee` in options
 
-## v2.0.8
+ ## v2.0.8
 
 ### @axiom-crypto/client
 

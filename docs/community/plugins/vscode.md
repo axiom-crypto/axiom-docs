@@ -16,7 +16,7 @@ Install the `Axiom Crypto` extension from [VisualStudio marketplace](https://mar
 
 The extension has the following settings:
 
-* `axiom.configFilePath`: File in which `PRIVATE_KEY_SEPOLIA` and `PROVIDER_URI_SEPOLIA` are defined. Default is `.env`.
+* `axiom.configFilePath`: File in which `PRIVATE_KEY_11155111` and `RPC_URL_11155111` are defined. Default is `.env`.
 * `axiom.circuitFilesPattern`: Glob pattern to used to automatically discover files containing circuit definitions. Default is `**/axiom/**/*.ts`.
 * `axiom.buildDirectory`: Path where circuit outputs from compiled circuits will be written. Default is `build/axiom`.
 
@@ -46,7 +46,7 @@ Queries are managed by Axiom-VScode and saved to the VS code workspace state.
 
 You must compile the circuit and set the query input before running.
 
-You must also set `PROVIDER_URI_SEPOLIA` in the config file defined in the [extension settings](#extension-settings).
+You must also set `RPC_URL_11155111` in the config file defined in the [extension settings](#extension-settings).
 
 ![Prove Query Example](@site/static/img/vscode_prove_query.gif)
 
@@ -54,6 +54,6 @@ You must also set `PROVIDER_URI_SEPOLIA` in the config file defined in the [exte
 
 You must set the callback address before sending.
 
-You must also set `PRIVATE_KEY_SEPOLIA` in the config file defined in the [extension settings](#extension-settings).
+You must also set `PRIVATE_KEY_11155111` in the config file defined in the [extension settings](#extension-settings).
 
 ![Send Query Example](@site/static/img/vscode_send_query.gif)
