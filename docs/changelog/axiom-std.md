@@ -6,6 +6,11 @@ sidebar_label: axiom-std
 
 # axiom-std
 
+## v0.1.10 (b406ae6)
+
+- Add support for cross-chain usage of Axiom
+- Bump `@axiom-crypto/client` version to v2.1.0
+
 ## v0.1.9 (8f475f1)
 
 - Fix `axiomV2CoreDeployBlock` for Ethereum mainnet.
