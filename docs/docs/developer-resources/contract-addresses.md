@@ -6,12 +6,14 @@ sidebar_label: Contract Addresses and Chains
 
 # Contract Addresses
 
-Axiom V2 is deployed on:
+Axiom V2 has two types of deployments, same-chain and cross-chain. Same-chain deployments allow smart contracts to trustlessly compute over the full history of the chain they are deployed on; these are live on:
 
-- Ethereum mainnet
-- Base mainnet
-- Sepolia testnet
-- Base Sepolia testnet
+- Ethereum and Base mainnets
+- Sepolia and Base Sepolia testnets
+
+Cross-chain deployments allow smart contracts on the target chain to trustlessly compute over the full history of the source chain. Only configurations where the target chain is a rollup and the source chain is mainnet or testnet are supported. Cross-chain versions of Axiom V2 are currently deployed to:
+
+- Read Sepolia testnet from Base Sepolia testnet
 
 Deployed contract addresses are listed below. All testnet contracts have the same interface as Mainnet contracts, but ZK proof verification has been removed. For clarity, testnet contract names are suffixed with `Mock`.
 
@@ -71,7 +73,7 @@ Axiom V2 is deployed on Base mainnet at the addresses below. The contracts make 
 
 ### Contract Addresses
 
-| Contract                        | Address (Base mainnet)                                                                                            |
+| Contract                        | Address (Base mainnet)                                                                                                |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `AxiomV2Core` (proxy)           | [0xB93087Acb2b4dfF8854C01DC661710D6f5FB7a94](https://basescan.org/address/0xB93087Acb2b4dfF8854C01DC661710D6f5FB7a94) |
 | `AxiomV2Core` (impl)            | [0xe0410d3d92f621173e506f7b4eebb2571de4c95d](https://basescan.org/address/0xe0410d3d92f621173e506f7b4eebb2571de4c95d) |
@@ -86,7 +88,7 @@ Axiom V2 is deployed on Base mainnet at the addresses below. The contracts make 
 
 The following addresses control [upgrades and pauses](/protocol/protocol-design/guardrails.md) for the Base mainnet contracts above.
 
-| Contract                | Address (Base mainnet)                                                                                            |
+| Contract                | Address (Base mainnet)                                                                                                |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Axiom Timelock          | [0x57Dbf921727818fd2e8a3e97B4958Ab69F6b6815](https://basescan.org/address/0x57Dbf921727818fd2e8a3e97B4958Ab69F6b6815) |
 | Axiom Timelock Multisig | [0x5D6B66c40bc58cB34B3eAA717f48Baa2A6f9A1af](https://basescan.org/address/0x5D6B66c40bc58cB34B3eAA717f48Baa2A6f9A1af) |
@@ -99,18 +101,18 @@ The Axiom Timelock Multisig has the `PROPOSER_ROLE` and `EXECUTOR_ROLE` for the 
 
 The following addresses have the `PROVER_ROLE` for `AxiomV2Core` and `AxiomV2Query` on Base mainnet.
 
-| Role                    | Address (Base mainnet)                                                                                            |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `AxiomV2Core` Prover    | [0x2F2bD1f730d4605F6553333d92523dc5d3b50083](https://basescan.org/address/0x2F2bD1f730d4605F6553333d92523dc5d3b50083) |
-| `AxiomV2Query` Prover 1 | [0xf1659EA0907164C1fD542e2d1d4138033bEC6e94](https://basescan.org/address/0xf1659EA0907164C1fD542e2d1d4138033bEC6e94) |
-| `AxiomV2Query` Prover 2 | [0x68b5Caa074c5Ea486A80f6D6b6e6D12cD33564E8](https://basescan.org/address/0x68b5Caa074c5Ea486A80f6D6b6e6D12cD33564E8) |
-| `AxiomV2Query` Prover 3 | [0x1A48a25c6c26D8aA36995789d624Eb68A8878fD2](https://basescan.org/address/0x1A48a25c6c26D8aA36995789d624Eb68A8878fD2) |
-| `AxiomV2Query` Prover 4 | [0xAd51D73f80097435a4D5B4DA78b407f56e7730Bd](https://basescan.org/address/0xAd51D73f80097435a4D5B4DA78b407f56e7730Bd) |
-| `AxiomV2Query` Prover 5 | [0x6b7175fc33301F4D41F3460eE6205341BF363B57](https://basescan.org/address/0x6b7175fc33301F4D41F3460eE6205341BF363B57) |
-| `AxiomV2Query` Prover 6 | [0x64d5390F0728FD29616711b6dE3Ba0BDE43EC8fA](https://basescan.org/address/0x64d5390F0728FD29616711b6dE3Ba0BDE43EC8fA) |
-| `AxiomV2Query` Prover 7 | [0x3Bd2A23af0643cd830501e725a341dE56d80Fb8a](https://basescan.org/address/0x3Bd2A23af0643cd830501e725a341dE56d80Fb8a) |
-| `AxiomV2Query` Prover 8 | [0xaac090B3AB34A3121BB9D23502cFb5730DB64C20](https://basescan.org/address/0xaac090B3AB34A3121BB9D23502cFb5730DB64C20) |
-| `AxiomV2Query` Prover 9 | [0x32cE4905C18C77419CB84d71cdf002A5672096a9](https://basescan.org/address/0x32cE4905C18C77419CB84d71cdf002A5672096a9) |
+| Role                     | Address (Base mainnet)                                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `AxiomV2Core` Prover     | [0x2F2bD1f730d4605F6553333d92523dc5d3b50083](https://basescan.org/address/0x2F2bD1f730d4605F6553333d92523dc5d3b50083) |
+| `AxiomV2Query` Prover 1  | [0xf1659EA0907164C1fD542e2d1d4138033bEC6e94](https://basescan.org/address/0xf1659EA0907164C1fD542e2d1d4138033bEC6e94) |
+| `AxiomV2Query` Prover 2  | [0x68b5Caa074c5Ea486A80f6D6b6e6D12cD33564E8](https://basescan.org/address/0x68b5Caa074c5Ea486A80f6D6b6e6D12cD33564E8) |
+| `AxiomV2Query` Prover 3  | [0x1A48a25c6c26D8aA36995789d624Eb68A8878fD2](https://basescan.org/address/0x1A48a25c6c26D8aA36995789d624Eb68A8878fD2) |
+| `AxiomV2Query` Prover 4  | [0xAd51D73f80097435a4D5B4DA78b407f56e7730Bd](https://basescan.org/address/0xAd51D73f80097435a4D5B4DA78b407f56e7730Bd) |
+| `AxiomV2Query` Prover 5  | [0x6b7175fc33301F4D41F3460eE6205341BF363B57](https://basescan.org/address/0x6b7175fc33301F4D41F3460eE6205341BF363B57) |
+| `AxiomV2Query` Prover 6  | [0x64d5390F0728FD29616711b6dE3Ba0BDE43EC8fA](https://basescan.org/address/0x64d5390F0728FD29616711b6dE3Ba0BDE43EC8fA) |
+| `AxiomV2Query` Prover 7  | [0x3Bd2A23af0643cd830501e725a341dE56d80Fb8a](https://basescan.org/address/0x3Bd2A23af0643cd830501e725a341dE56d80Fb8a) |
+| `AxiomV2Query` Prover 8  | [0xaac090B3AB34A3121BB9D23502cFb5730DB64C20](https://basescan.org/address/0xaac090B3AB34A3121BB9D23502cFb5730DB64C20) |
+| `AxiomV2Query` Prover 9  | [0x32cE4905C18C77419CB84d71cdf002A5672096a9](https://basescan.org/address/0x32cE4905C18C77419CB84d71cdf002A5672096a9) |
 | `AxiomV2Query` Prover 10 | [0x32e83eD6d33A4f97A817eDdD688A38dBE924Fcd5](https://basescan.org/address/0x32e83eD6d33A4f97A817eDdD688A38dBE924Fcd5) |
 
 ## Sepolia Testnet
@@ -205,3 +207,40 @@ The following addresses have the `PROVER_ROLE` for `AxiomV2CoreMock` and `AxiomV
 | `AxiomV2Query` Prover 8  | [0x80a9BDb511eB2bfDb5Bb14e34A528083Bc681284](https://sepolia.basescan.org/address/0x80a9BDb511eB2bfDb5Bb14e34A528083Bc681284) |
 | `AxiomV2Query` Prover 9  | [0xf7F1e3CD94C10790B2025D22422945E8DB6138c0](https://sepolia.basescan.org/address/0xf7F1e3CD94C10790B2025D22422945E8DB6138c0) |
 | `AxiomV2Query` Prover 10 | [0xeEb06863E595A3d5738d6BFc2f4F3D8E3F6ea2b6](https://sepolia.basescan.org/address/0xeEb06863E595A3d5738d6BFc2f4F3D8E3F6ea2b6) |
+
+## Sepolia -> Base Sepolia Testnet
+
+A mock cross-chain version of Axiom V2 is deployed on Base Sepolia testnet at the following addresses. The mock versions have the same contract code and interfaces as the non-mock versions, but skip ZK proof verification.
+
+### Contract Addresses
+
+| Contract                             | Address (Base Sepolia Testnet)                                                                                                |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `AxiomV2QueryMock` (proxy)           | [0xFa44Fc4CDE68177Bd8212774a09E32d23fA1F41f](https://sepolia.basescan.org/address/0xFa44Fc4CDE68177Bd8212774a09E32d23fA1F41f) |
+| `AxiomV2QueryMock` (impl)            | [0x346Cfa3A39e3319Af2B07Ef2ABFD914B4c963698](https://sepolia.basescan.org/address/0x346Cfa3A39e3319Af2B07Ef2ABFD914B4c963698) |
+| `AxiomV2BaseBlockhashHeaderVerifier` | [0xFfFB115e556ae35254d5e4DFb99AaD05fC39B4a6](https://sepolia.basescan.org/address/0xFfFB115e556ae35254d5e4DFb99AaD05fC39B4a6) |
+
+### Governance Addresses
+
+The following addresses control [upgrades and pauses](/protocol/protocol-design/guardrails.md) to all Base Sepolia contracts listed above.
+
+| Contract                | Address (Base Sepolia Testnet)                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Axiom Timelock          | [0xbdd2B047210457DfF1E468c7B1aa847F3E6e3cc9](https://sepolia.basescan.org/address/0xbdd2B047210457DfF1E468c7B1aa847F3E6e3cc9) |
+| Axiom Timelock Multisig | [0x5D6B66c40bc58cB34B3eAA717f48Baa2A6f9A1af](https://sepolia.basescan.org/address/0x5D6B66c40bc58cB34B3eAA717f48Baa2A6f9A1af) |
+| Axiom Guardian Multisig | [0xE57F502a19E1086d40704C78E91Fc95f0d9A2D96](https://sepolia.basescan.org/address/0xE57F502a19E1086d40704C78E91Fc95f0d9A2D96) |
+| Axiom Unfreeze Multisig | [0x36B96FE195e9A935Fb83c085d47367949f0de3Fd](https://sepolia.basescan.org/address/0x36B96FE195e9A935Fb83c085d47367949f0de3Fd) |
+
+The Axiom Timelock Multisig has the `PROPOSER_ROLE` and `EXECUTOR_ROLE` for the `AxiomTimelock` timelock controller. The Axiom Guardian Multisig has the `GUARDIAN_ROLE`, and the Axiom Unfreeze Multisig has the `UNFREEZE_ROLE`.
+
+### Prover Addresses
+
+The following addresses have the `PROVER_ROLE` for `AxiomV2CoreMock` and `AxiomV2QueryMock` on Base Sepolia testnet.
+
+| Role                    | Address (Base Sepolia testnet)                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `AxiomV2Query` Prover 1 | [0x38e48fc811f7f50e5dc5a3cf60964fbfe8068782](https://sepolia.basescan.org/address/0x38e48fc811f7f50e5dc5a3cf60964fbfe8068782) |
+| `AxiomV2Query` Prover 2 | [0x6bc504bf0e43c3c215fc7d56769c8f0b81e56c05](https://sepolia.basescan.org/address/0x6bc504bf0e43c3c215fc7d56769c8f0b81e56c05) |
+| `AxiomV2Query` Prover 3 | [0x87e8ff4db6b523f139c49310d43058f60e2f7d40](https://sepolia.basescan.org/address/0x87e8ff4db6b523f139c49310d43058f60e2f7d40) |
+| `AxiomV2Query` Prover 4 | [0x85b5a0349f9e4a11ec619eb9fb08bffe05992347](https://sepolia.basescan.org/address/0x85b5a0349f9e4a11ec619eb9fb08bffe05992347) |
+| `AxiomV2Query` Prover 5 | [0x0ad529e375031e7025da8d6b3ec0cd6f3d3cda43](https://sepolia.basescan.org/address/0x0ad529e375031e7025da8d6b3ec0cd6f3d3cda43) |
