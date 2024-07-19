@@ -82,8 +82,8 @@ where
 
 - `proofVerificationGas`: Gas cost of proof verification, currently set to `420_000`
 - `axiomQueryFee`: Fee charged by Axiom, set to `0.003 ether`
-  </TabItem>
-  <TabItem value="Base" label="Base">
+</TabItem>
+<TabItem value="Base" label="Base">
   The fee for each query is determined by:
 
 - `maxFeePerGas` (`uint64`): The max fee, in wei, to use in the fulfillment transaction.
@@ -100,8 +100,8 @@ where
 
 - `proofVerificationGas`: Gas cost of proof verification, currently set to `420_000`
 - `axiomQueryFee`: Fee charged by Axiom, set to `0.003 ether`
-  </TabItem>
-  </Tabs>
+</TabItem>
+</Tabs>
 
 To increase gas parameters after making a query, anyone can add funds to a query with the `increaseQueryGas` function.
 
