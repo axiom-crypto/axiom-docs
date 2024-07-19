@@ -91,6 +91,23 @@ maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataG
 
 where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy. If any of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas`, `callbackGasLimit`, and `overrideAxiomQueryFee` by calling the `increaseQueryGas` function.
 </TabItem>
+<TabItem value="Sepolia to Base Sepolia" label="Sepolia to Base Sepolia">
+
+- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
+- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
+
+The parameters set by the user for each query are:
+
+- `maxFeePerGas`: The max fee per gas that the prover should use in the fulfill query transaction.
+- `callbackGasLimit`: The gas limit allocated for use in the callback.
+- `overrideAxiomQueryFee`: Computed so that
+
+```
+maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataGasFee + axiomQueryFee
+```
+
+where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy. If any of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas`, `callbackGasLimit`, and `overrideAxiomQueryFee` by calling the `increaseQueryGas` function.
+</TabItem>
 </Tabs>
 
 The `AxiomV2Query` contract will escrow `maxQueryPri` from the user's balance for a query. This is the maximum cost of fulfilling the query. After the prover has fulfilled the query, they can refund any
@@ -133,6 +150,9 @@ The `deadlineBlockNumber` is set to `queryDeadlineInterval` blocks after query s
 `7200` blocks (approximately 1 day)
 </TabItem>
 <TabItem value="Base Sepolia" label="Base Sepolia">
+`43200` blocks (approximately 1 day)
+</TabItem>
+<TabItem value="Sepolia to Base Sepolia" label="Sepolia to Base Sepolia">
 `43200` blocks (approximately 1 day)
 </TabItem>
 </Tabs>
