@@ -19,3 +19,12 @@ The deployment uses the following repos and commits.
 | [**snark-verifier**](https://github.com/axiom-crypto/snark-verifier/tree/v0.1.7)         | [`v0.1.7`](https://github.com/axiom-crypto/snark-verifier/releases/tag/v0.1.7)     | [`7cbe809`](https://github.com/axiom-crypto/snark-verifier/commit/7cbe809650958958aad146ad85de922b758c664d)     | ZK circuits for recursive aggregation of halo2-KZG SNARKs                       |
 | [**axiom-eth**](https://github.com/axiom-crypto/axiom-eth/tree/v2.0.14)                  | [`v2.0.14`](https://github.com/axiom-crypto/axiom-eth/releases/tag/v2.0.14)        | [`d607950`](https://github.com/axiom-crypto/axiom-eth/commit/d60795018c1aa6c2505d8cfac03d460746f82e5a)          | ZK circuits for reading from Ethereum data structures and proving Axiom queries |
 | [**axiom-v2-contracts**](https://github.com/axiom-crypto/axiom-v2-contracts/tree/v1.0.0) | [`v1.0.0`](https://github.com/axiom-crypto/axiom-v2-contracts/releases/tag/v1.0.0) | [`5514752`](https://github.com/axiom-crypto/axiom-v2-contracts/commit/5514752e92e829d7da9a8da8988062d870460cab) | Smart contracts for `AxiomV2Core` and `AxiomV2Query`                            |
+
+Our audit reports are available below.
+
+| Repo | Auditors | Reports |
+|---|---|---|
+| [**halo2-lib**](https://github.com/axiom-crypto/halo2-lib/tree/v0.4.1) ||
+| [**snark-verifier**](https://github.com/axiom-crypto/snark-verifier/tree/v0.1.7) ||
+| [**axiom-eth**](https://github.com/axiom-crypto/axiom-eth/tree/v2.0.14) ||
+| [**axiom-v2-contracts**](https://github.com/axiom-crypto/axiom-v2-contracts/tree/v1.0.0) | Spearbit | [Report 1](@site/static/pdf/spearbit.contracts.audit1.pdf) [Report 2](@site/static/pdf/spearbit.contracts.audit2.pdf) [Report 3](@site/static/pdf/spearbit.contracts.audit3.pdf) |
