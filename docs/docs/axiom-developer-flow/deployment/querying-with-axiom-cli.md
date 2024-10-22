@@ -49,4 +49,4 @@ The `sendQueryCalldata` is the value of the `calldata` field from the json outpu
 
 ## Using Different Chains
 
-We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `sourceChainId` and `provider` CLI arguments to the appropriate values for the chain you want to use. Ensure that the `private-key` that you pass in is also funded on the chain that you are using and that the `<callback addr>` is a valid contract that will accept an Axiom callback.
+We currently support Ethereum Mainnet and Sepolia. You can simply modify the `sourceChainId` and `provider` CLI arguments to the appropriate values for the chain you want to use. Ensure that the `private-key` that you pass in is also funded on the chain that you are using and that the `<callback addr>` is a valid contract that will accept an Axiom callback.
