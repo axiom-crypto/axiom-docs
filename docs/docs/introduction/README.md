@@ -11,7 +11,7 @@ slug: /
 
 Axiom allows smart contracts to **trustlessly compute over the entire history of Ethereum**, including transactions and receipts. Developers can send on-chain queries into Axiom, which are trustlessly fulfilled with ZK-verified results sent in a callback to the developer's smart contract. This allows developers to build on-chain applications which access more data at a lower cost without adding additional trust assumptions.
 
-Axiom V2 is **live on mainnet as of January 2024** and is **coming soon to Base**. For a preview of the Base deployment, check out the Base Sepolia testnet deployment.
+Axiom V2 is **live on mainnet as of January 2024**.
 
 _In conjunction with the Axiom V2 release, Axiom V1 was deprecated as of January 22, 2024._
 

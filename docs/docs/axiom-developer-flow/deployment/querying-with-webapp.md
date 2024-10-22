@@ -202,15 +202,15 @@ Once the query is submitted on-chain, you can handle the additional logic as you
 
 ## Using Different Chains
 
-We currently support Ethereum Mainnet, Sepolia, and Base Sepolia. You can simply modify the `WebappSettings` object to the appropriate values for the chain you'd like to use. Ensure that the `callbackTarget` is a valid contract that will accept an Axiom callback. For example, if you want to use Base Sepolia:
+We currently support Ethereum Mainnet and Sepolia. You can simply modify the `WebappSettings` object to the appropriate values for the chain you'd like to use. Ensure that the `callbackTarget` is a valid contract that will accept an Axiom callback. For example, if you want to use Sepolia:
 
 ```typescript title="app/src/lib/webappSettings.ts"
 ...
 export const WebappSettings = {
   compiledCircuit,
   inputs,
-  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_BASE_SEPOLIA as string,
-  chainId: "84532",
+  provider: process.env.NEXT_PUBLIC_PROVIDER_URI_SEPOLIA as string,
+  chainId: "11155111",
   callbackTarget: "0x50F2D5c9a4A35cb922a631019287881f56A00ED5",
   callbackAbi: AverageBalanceAbi,
 }

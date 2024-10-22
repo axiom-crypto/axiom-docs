@@ -57,23 +57,6 @@ The parameters set by the user for each query are:
 
 If either of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas` and `callbackGasLimit` by calling the `increaseQueryGas` function.
 </TabItem>
-<TabItem value="Base Sepolia" label="Base Sepolia">
-
-- `proofVerificationGas`: The gas cost of ZK proof verification, currently set to `420_000` gas
-- `axiomQueryFee`: Fee charged by Axiom, fixed to `0.003 ether`
-
-The parameters set by the user for each query are:
-
-- `maxFeePerGas`: The max fee per gas that the prover should use in the fulfill query transaction.
-- `callbackGasLimit`: The gas limit allocated for use in the callback.
-- `overrideAxiomQueryFee`: Computed so that
-
-```
-maxQueryPri = maxFeePerGas * (callbackGasLimit + proofVerificationGas) + l1DataGasFee + axiomQueryFee
-```
-
-where `l1DataGasFee` is computed using the [`getL1Fee`](https://docs.optimism.io/stack/transactions/fees#ecotone) predeploy. If any of these parameters is too low, the fulfill query transaction cannot be sent successfully. Prior to query fulfillment, the user can update the parameters `maxFeePerGas`, `callbackGasLimit`, and `overrideAxiomQueryFee` by calling the `increaseQueryGas` function.
-</TabItem>
 </Tabs>
 
 The `AxiomV2Query` contract will escrow `maxQueryPri` from the user's balance for a query. This is the maximum cost of fulfilling the query. After the prover has fulfilled the query, they can refund any
@@ -93,7 +76,7 @@ These are the only limits when there are no subqueries of the following types:
 - Transaction subquery for a transaction with more than `8192` bytes of input data or more than `4096` bytes in the RLP encoded access list.
 - Receipt subquery for a transaction receipt with either more than `80` logs or which contains a log with data field exceeding `1024` bytes.
 
-For these larger transaction and receipt subqueries, we have more fine-grained limits. These are detailed in the [Transaction Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/transaction-subquery) and [Receipt Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/receipt-subquery) sections of the Axiom Typescript SDK documentation. We expect limits on Base to be similar, but will finalize them upon our Base mainnet release.
+For these larger transaction and receipt subqueries, we have more fine-grained limits. These are detailed in the [Transaction Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/transaction-subquery) and [Receipt Subquery](/sdk/typescript-sdk/axiom-circuit/axiom-subqueries/receipt-subquery) sections of the Axiom Typescript SDK documentation. 
 
 ## Deposit and Withdraw
 
@@ -111,8 +94,5 @@ The `deadlineBlockNumber` is set to `queryDeadlineInterval` blocks after query s
 </TabItem>
 <TabItem value="Sepolia" label="Sepolia">
 `7200` blocks (approximately 1 day)
-</TabItem>
-<TabItem value="Base Sepolia" label="Base Sepolia">
-`43200` blocks (approximately 1 day)
 </TabItem>
 </Tabs>
