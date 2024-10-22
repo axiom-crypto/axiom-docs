@@ -6,6 +6,15 @@ sidebar_label: Client SDK
 
 # Client SDK
 
+## v2.1.1
+
+### @axiom-crypto/client
+
+- Deprecates Base Sepolia 
+
+### @axiom-crypto/react
+
+- Deprecates Base Sepolia
 ## v2.0.9
 
 ### @axiom-crypto/client

@@ -6,6 +6,10 @@ sidebar_label: axiom-std
 
 # axiom-std
 
+## v0.1.11 (efebedc)
+
+- Deprecates Base Sepolia
+
 ## v0.1.9 (8f475f1)
 
 - Fix `axiomV2CoreDeployBlock` for Ethereum mainnet.
