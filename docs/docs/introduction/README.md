@@ -11,7 +11,7 @@ slug: /
 
 Axiom allows smart contracts to **trustlessly compute over the entire history of Ethereum**, including transactions and receipts. Developers can send on-chain queries into Axiom, which are trustlessly fulfilled with ZK-verified results sent in a callback to the developer's smart contract. This allows developers to build on-chain applications which access more data at a lower cost without adding additional trust assumptions.
 
-_Axiom is shifting its focus to building with and supporting OpenVM. Due to this, we are ending support for Axiom V2 effective December 21, 2024._
+_**Axiom is shifting its focus to building with and supporting OpenVM. Due to this, we are ending support for Axiom V2 effective December 21, 2024.**_
 
 #### Overview
 
