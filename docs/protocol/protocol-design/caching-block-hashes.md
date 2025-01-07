@@ -81,7 +81,7 @@ The latest padded Merkle mountain range is stored in `blockhashPmmr`. The mappin
 mapping(uint32 => bytes32) public pmmrSnapshots;
 ```
 
-caches commitments to recent values of `blockhashPmmr` to faciliate asynchronous proving against a Merkle mountain range which may be updated on-chain during proving.
+caches commitments to recent values of `blockhashPmmr` to facilitate asynchronous proving against a Merkle mountain range which may be updated on-chain during proving.
 
 Updates to `blockhashPmmr` are made using newly verified Merkle roots added to [`historicalRoots`](caching-block-hashes.md#caching-merkle-roots-of-block-hashes). Updates are made either alongside `historicalRoots` updates in [`updateRecent`](caching-block-hashes.md#caching-merkle-roots-of-block-hashes) or by calling `appendHistoricalMMR`, which has the following function signature:
 
