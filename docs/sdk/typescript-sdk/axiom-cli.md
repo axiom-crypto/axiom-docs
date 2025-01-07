@@ -130,7 +130,7 @@ Options:
   -p, --provider [provider]                    JSON-RPC provider (https)
   -pv, --proven [proven]                       `axiom circuit prove` outputs path
   -o, --outputs [outputs]                      query-params outputs path
-  -a, --args-map                               sendQuery argments output as mapping for use with Forge
+  -a, --args-map                               sendQuery arguments output as mapping for use with Forge
 ```
 
 - callback address: the target contract address with the callback function
