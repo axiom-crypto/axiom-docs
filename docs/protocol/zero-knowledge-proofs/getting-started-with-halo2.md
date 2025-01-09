@@ -464,6 +464,6 @@ Lastly, the improvement to proving time performance from increasing the number o
 
 ## Saved reading for later
 
-If you find that `halo2-lib` does not provide enough functionality for your ZK circuit needs, or if you are just curious, you can check out the full "vanilla" Halo2 API documention in the [halo2 book](https://zcash.github.io/halo2/).&#x20;
+If you find that `halo2-lib` does not provide enough functionality for your ZK circuit needs, or if you are just curious, you can check out the full "vanilla" Halo2 API documentation in the [halo2 book](https://zcash.github.io/halo2/).&#x20;
 
 - We have also assembled a [Halo2 Cheatsheet](https://hackmd.io/@axiom/HyoXzD7Zh) with a growing collection of observations we found helpful when first interacting with the vanilla Halo2 API.&#x20;
