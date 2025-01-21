@@ -14,8 +14,8 @@ npm install
 
 Open a `.env` file and set the following environment variables to `1` in the file:
 
-- `ANGOLIA_APP_ID`
-- `ANGOLIA_API_KEY`
+- `ALGOLIA_APP_ID`
+- `ALGOLIA_API_KEY`
 
 Start the server
 
