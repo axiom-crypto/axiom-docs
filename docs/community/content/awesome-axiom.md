@@ -28,7 +28,7 @@ This is a living resource containing all the awesome things in the Axiom ecosyst
 
 **ZK9 2023** - [Adding reflection to the EVM with Axiom](https://www.youtube.com/watch?v=9jnKz44NiaY)
 
-**ZK Paris 2023** - [Using ZK to enchance the EVM](https://www.youtube.com/watch?v=GauVCNRjigE)
+**ZK Paris 2023** - [Using ZK to enhance the EVM](https://www.youtube.com/watch?v=GauVCNRjigE)
 
 **PROGCRYPTO** - [Scaling Data and Compute on Ethereum with Axiom](https://youtu.be/prDvMP2rXSY?si=8CYB22WqI3FBubDH)
 
